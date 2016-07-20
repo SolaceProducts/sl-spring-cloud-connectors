@@ -1,3 +1,5 @@
+![](https://travis-ci.org/SolaceLabs/sl-solace-messaging-service-info.svg?branch=master)
+
 # sl-solace-messaging-service-info
 A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for SolaceMessaging in Cloud Foundry.
 
