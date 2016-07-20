@@ -17,3 +17,6 @@ hs_err_pid*
 .project
 .settings/
 .springBeans
+
+# Apple 
+.DS_Store
