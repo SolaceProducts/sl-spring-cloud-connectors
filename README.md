@@ -9,7 +9,7 @@ A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Sp
 * [Spring Cloud Connectors](#spring-cloud-connectors)
 * [Using in your Spring Cloud application](#using-in-your-spring-cloud-application)
 * [Checking out and Building](#checking-out-and-building)
-* [Example Build Dependency](#example-build-depenency)
+* [Example Build Dependency](#example-build-dependency)
 * [Resources](#resources)
 
 
