@@ -18,23 +18,38 @@
  */
 package com.solacesystems.labs.cloud.spring.cloudfoundry;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator;
 import org.springframework.cloud.cloudfoundry.Tags;
 
 public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<SolaceMessagingInfo> {
 
+	private static final Log trace = LogFactory.getLog(SolaceMessagingInfoCreator.class);
+
 	public SolaceMessagingInfoCreator() {
 		super(new Tags("solace-messaging"));
 	}
 
+	
 	public SolaceMessagingInfo createServiceInfo(Map<String, Object> serviceData) {
 		String id = getId(serviceData);
 
 		Map<String, Object> credentials = getCredentials(serviceData);
 
-		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, credentials);
+		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id);
+		
+		try {
+			BeanUtils.populate(solMessagingInfo, credentials);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			trace.error("Could not populate SolaceMessagingInfo with serviceData provided", e);
+			solMessagingInfo = null;
+		}
+		
 		return solMessagingInfo;
 	}
 
