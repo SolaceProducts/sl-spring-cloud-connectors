@@ -1,22 +1,20 @@
-package com.solacesystems.labs.cloud.spring.cloudfoundry;
+package com.solace.labs.spring.cloud.core;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.net.URLClassLoader;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 import org.meanbean.test.EqualsMethodTester;
+
+import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
 
 
 
@@ -56,10 +54,7 @@ public class SolaceMessagingServiceInfoTest {
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
 		
-		SolaceMessagingInfo smi = new SolaceMessagingInfo("full-credentials-instance");
-		
-		// Exercise setters through reflection
-		BeanUtils.populate(smi, exCred);
+		SolaceMessagingInfo smi = new SolaceMessagingInfo("full-credentials-instance", exCred);
 		
 		// Check Top Level stuff
 		assertEquals("full-credentials-instance", smi.getId());
@@ -90,9 +85,6 @@ public class SolaceMessagingServiceInfoTest {
 		assertThat(smi.getManagementHttpsUris(), is(Arrays.asList("https://192.168.1.50:443/SEMP/v2")));
 		assertEquals("sample-mgmt-username", smi.getManagementUsername());
 		assertEquals("sample-mgmt-password", smi.getManagementPassword());
-		
-		// For interest...
-		System.out.println(smi.toString());
 
 	}
 	

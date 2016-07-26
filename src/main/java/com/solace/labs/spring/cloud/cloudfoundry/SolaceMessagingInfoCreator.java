@@ -16,39 +16,54 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.solacesystems.labs.cloud.spring.cloudfoundry;
+package com.solace.labs.spring.cloud.cloudfoundry;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator;
 import org.springframework.cloud.cloudfoundry.Tags;
 
+import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
+
 public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<SolaceMessagingInfo> {
 
-	private static final Log trace = LogFactory.getLog(SolaceMessagingInfoCreator.class);
+	//private static final Log trace = LogFactory.getLog(SolaceMessagingInfoCreator.class);
 
+	String label = "solace-messaging";
+	
 	public SolaceMessagingInfoCreator() {
-		super(new Tags("solace-messaging"));
+		super(new Tags("solace-messaging", 
+				 "solace",
+			     "rest",
+			     "mqtt",
+			     "mq",
+			     "queue",
+			     "event-streaming",
+			     "amqp",
+			     "jms",
+			     "messaging"));
 	}
-
+	
+	
+	// As a starting point, will only accept if the labels match.
+	public boolean accept(Map<String, Object> serviceData) {
+		String serviceLabel = (String) serviceData.get("label");
+		
+		if (!super.accept(serviceData)) 
+			return false;
+		
+		if (!this.label.equals(serviceLabel))
+			return false;
+		
+		return true;
+	}
 	
 	public SolaceMessagingInfo createServiceInfo(Map<String, Object> serviceData) {
 		String id = getId(serviceData);
 
 		Map<String, Object> credentials = getCredentials(serviceData);
 
-		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id);
-		
-		try {
-			BeanUtils.populate(solMessagingInfo, credentials);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			trace.error("Could not populate SolaceMessagingInfo with serviceData provided", e);
-			solMessagingInfo = null;
-		}
+		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, credentials);
 		
 		return solMessagingInfo;
 	}

@@ -16,9 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.solacesystems.labs.cloud.spring.cloudfoundry;
+package com.solace.labs.spring.cloud.core;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.cloud.service.BaseServiceInfo;
@@ -56,36 +57,101 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String managementPassword;
 	private String managementUsername;
 
-	
+	// Some details about the binding
+	private String plan;
+
 	public SolaceMessagingInfo() {
 		super(null);
 	}
-	
+
 	public SolaceMessagingInfo(String id) {
 		super(id);
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
+	@SuppressWarnings("unchecked")
+	public SolaceMessagingInfo(String id, Map<String, Object> credentials) {
+		super(id);
+
+		if (credentials == null) {
+			throw new IllegalArgumentException("Received null credentials during object creation");
+		}
+		
+		// Populate this the quick and dirty way for now. Can improve later as
+		// we harden. As a start, we'll be tolerant of missing attributes and
+		// just leave fields set to null.
+		for (Map.Entry<String, Object> entry : credentials.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			switch (key) {
+			case "clientUsername":
+				clientUsername = (String) value;
+				break;
+			case "clientPassword":
+				clientPassword = (String) value;
+				break;
+			case "msgVpnName":
+				msgVpnName = (String) value;
+				break;
+			case "smfUri":
+				smfUri = (String) value;
+				break;
+			case "smfTlsUri":
+				smfTlsUri = (String) value;
+				break;
+			case "smfZipUri":
+				smfZipUri = (String) value;
+				break;
+			case "webMessagingUri":
+				webMessagingUri = (String) value;
+				break;
+			case "jmsUri":
+				jmsUri = (String) value;
+				break;
+			case "jmsTlsUri":
+				jmsTlsUri = (String) value;
+				break;
+			case "managementUsername":
+				managementUsername = (String) value;
+				break;
+			case "managementPassword":
+				managementPassword = (String) value;
+				break;
+			case "restUris":
+				restUris = (List<String>) value;
+				break;
+			case "restTlsUris":
+				restTlsUris = (List<String>) value;
+				break;
+			case "mqttUris":
+				mqttUris = (List<String>) value;
+				break;
+			case "mqttTlsUris":
+				mqttTlsUris = (List<String>) value;
+				break;
+			case "mqttWsUris":
+				mqttWsUris = (List<String>) value;
+				break;
+			case "mqttWssUris":
+				mqttWssUris = (List<String>) value;
+				break;
+			case "managementHttpUris":
+				managementHttpUris = (List<String>) value;
+				break;
+			case "managementHttpsUris":
+				managementHttpsUris = (List<String>) value;
+				break;
+			}
+		}
+
 	}
-	
-	
+
 	/**
 	 * @return the clientUsername
 	 */
 	@ServiceProperty
 	public String getClientUsername() {
 		return clientUsername;
-	}
-
-	/**
-	 * @param clientUsername the clientUsername to set
-	 */
-	public void setClientUsername(String clientUsername) {
-		this.clientUsername = clientUsername;
 	}
 
 	/**
@@ -97,25 +163,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param clientPassword the clientPassword to set
-	 */
-	public void setClientPassword(String clientPassword) {
-		this.clientPassword = clientPassword;
-	}
-
-	/**
 	 * @return the msgVpnName
 	 */
 	@ServiceProperty
 	public String getMsgVpnName() {
 		return msgVpnName;
-	}
-
-	/**
-	 * @param msgVpnName the msgVpnName to set
-	 */
-	public void setMsgVpnName(String msgVpnName) {
-		this.msgVpnName = msgVpnName;
 	}
 
 	/**
@@ -127,25 +179,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param smfUri the smfUri to set
-	 */
-	public void setSmfUri(String smfUri) {
-		this.smfUri = smfUri;
-	}
-
-	/**
 	 * @return the smfTlsUri
 	 */
 	@ServiceProperty
 	public String getSmfTlsUri() {
 		return smfTlsUri;
-	}
-
-	/**
-	 * @param smfTlsUri the smfTlsUri to set
-	 */
-	public void setSmfTlsUri(String smfTlsUri) {
-		this.smfTlsUri = smfTlsUri;
 	}
 
 	/**
@@ -157,25 +195,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param smfZipUri the smfZipUri to set
-	 */
-	public void setSmfZipUri(String smfZipUri) {
-		this.smfZipUri = smfZipUri;
-	}
-
-	/**
 	 * @return the webMessagingUri
 	 */
 	@ServiceProperty
 	public String getWebMessagingUri() {
 		return webMessagingUri;
-	}
-
-	/**
-	 * @param webMessagingUri the webMessagingUri to set
-	 */
-	public void setWebMessagingUri(String webMessagingUri) {
-		this.webMessagingUri = webMessagingUri;
 	}
 
 	/**
@@ -187,25 +211,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param jmsUri the jmsUri to set
-	 */
-	public void setJmsUri(String jmsUri) {
-		this.jmsUri = jmsUri;
-	}
-
-	/**
 	 * @return the jmsTlsUri
 	 */
 	@ServiceProperty
 	public String getJmsTlsUri() {
 		return jmsTlsUri;
-	}
-
-	/**
-	 * @param jmsTlsUri the jmsTlsUri to set
-	 */
-	public void setJmsTlsUri(String jmsTlsUri) {
-		this.jmsTlsUri = jmsTlsUri;
 	}
 
 	/**
@@ -217,25 +227,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param restUris the restUris to set
-	 */
-	public void setRestUris(List<String> restUris) {
-		this.restUris = restUris;
-	}
-
-	/**
 	 * @return the restTlsUris
 	 */
 	@ServiceProperty
 	public List<String> getRestTlsUris() {
 		return restTlsUris;
-	}
-
-	/**
-	 * @param restTlsUris the restTlsUris to set
-	 */
-	public void setRestTlsUris(List<String> restTlsUris) {
-		this.restTlsUris = restTlsUris;
 	}
 
 	/**
@@ -247,25 +243,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param mqttUris the mqttUris to set
-	 */
-	public void setMqttUris(List<String> mqttUris) {
-		this.mqttUris = mqttUris;
-	}
-
-	/**
 	 * @return the mqttTlsUris
 	 */
 	@ServiceProperty
 	public List<String> getMqttTlsUris() {
 		return mqttTlsUris;
-	}
-
-	/**
-	 * @param mqttTlsUris the mqttTlsUris to set
-	 */
-	public void setMqttTlsUris(List<String> mqttTlsUris) {
-		this.mqttTlsUris = mqttTlsUris;
 	}
 
 	/**
@@ -277,25 +259,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param mqttWsUris the mqttWsUris to set
-	 */
-	public void setMqttWsUris(List<String> mqttWsUris) {
-		this.mqttWsUris = mqttWsUris;
-	}
-
-	/**
 	 * @return the mqttWssUris
 	 */
 	@ServiceProperty
 	public List<String> getMqttWssUris() {
 		return mqttWssUris;
-	}
-
-	/**
-	 * @param mqttWssUris the mqttWssUris to set
-	 */
-	public void setMqttWssUris(List<String> mqttWssUris) {
-		this.mqttWssUris = mqttWssUris;
 	}
 
 	/**
@@ -307,25 +275,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param managementHttpUris the managementHttpUris to set
-	 */
-	public void setManagementHttpUris(List<String> managementHttpUris) {
-		this.managementHttpUris = managementHttpUris;
-	}
-
-	/**
 	 * @return the managementHttpsUris
 	 */
 	@ServiceProperty
 	public List<String> getManagementHttpsUris() {
 		return managementHttpsUris;
-	}
-
-	/**
-	 * @param managementHttpsUris the managementHttpsUris to set
-	 */
-	public void setManagementHttpsUris(List<String> managementHttpsUris) {
-		this.managementHttpsUris = managementHttpsUris;
 	}
 
 	/**
@@ -337,13 +291,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @param managementPassword the managementPassword to set
-	 */
-	public void setManagementPassword(String managementPassword) {
-		this.managementPassword = managementPassword;
-	}
-
-	/**
 	 * @return the managementUsername
 	 */
 	@ServiceProperty
@@ -351,14 +298,9 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		return managementUsername;
 	}
 
-	/**
-	 * @param managementUsername the managementUsername to set
-	 */
-	public void setManagementUsername(String managementUsername) {
-		this.managementUsername = managementUsername;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -366,7 +308,9 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -393,10 +337,13 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((smfUri == null) ? 0 : smfUri.hashCode());
 		result = prime * result + ((smfZipUri == null) ? 0 : smfZipUri.hashCode());
 		result = prime * result + ((webMessagingUri == null) ? 0 : webMessagingUri.hashCode());
+		result = prime * result + ((plan == null) ? 0 : plan.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -412,7 +359,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-				return false;
+			return false;
 		if (clientPassword == null) {
 			if (other.clientPassword != null)
 				return false;
@@ -507,6 +454,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.webMessagingUri != null)
 				return false;
 		} else if (!webMessagingUri.equals(other.webMessagingUri))
+			return false;
+		if (plan == null) {
+			if (other.plan != null)
+				return false;
+		} else if (!plan.equals(other.plan))
 			return false;
 		return true;
 	}
