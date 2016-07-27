@@ -1,16 +1,24 @@
 package com.solace.labs.spring.cloud.cloudfoundry;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
-import com.solace.labs.spring.cloud.cloudfoundry.SolaceMessagingInfoCreator;
 import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
+
 
 public class SolaceMessagingServiceInfoCreatorTest {
 
@@ -77,6 +85,42 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		// Validate smf is null. Others are not
 		assertNull(smi.getSmfUri());
 		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsUri());
+		
+	}
+	
+	@Test 
+	public void loadCreatorFromMeta() {
+		
+		String metaFileName = "src/main/resources/META-INF/services/org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator";
+		String solaceMessagingInfoCreatorClassName = null;
+		BufferedReader br = null;
+
+		try {
+
+			String sCurrentLine;
+
+			br = new BufferedReader(new FileReader(metaFileName));
+
+			while ((sCurrentLine = br.readLine()) != null) {
+				 solaceMessagingInfoCreatorClassName = sCurrentLine;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		try {
+			Class<?> z = Class.forName(solaceMessagingInfoCreatorClassName);
+			assertTrue(z != null);
+			assertTrue(z.equals(SolaceMessagingInfoCreator.class));
+		} catch (ClassNotFoundException e) {
+			fail("Should not throw.");
+		}
 		
 	}
 	
