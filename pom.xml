@@ -29,8 +29,8 @@
 		<url>https://github.com/SolaceLabs/sl-solace-messaging-service-info.git</url>
 		<connection>scm:git:git://github.com/SolaceLabs/sl-solace-messaging-service-info.git</connection>
 		<developerConnection>scm:git:git@github.com:SolaceLabs/sl-solace-messaging-service-info.git</developerConnection>
-	  <tag>sol-labs-spring-cloud-connector-1.0-test</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
 	<dependencies>
 
@@ -94,7 +94,7 @@
 				<version>2.10.4</version>
 				<executions>
 					<execution>
-						<id>javadoc-jar</id>
+						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
