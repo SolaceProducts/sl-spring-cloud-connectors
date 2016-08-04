@@ -29,7 +29,7 @@
 	<scm>
 		<url>https://github.com/SolaceLabs/sl-solace-messaging-service-info.git</url>
 		<connection>scm:git:git://github.com/SolaceLabs/sl-solace-messaging-service-info.git</connection>
-		<developerConnection>scm:git:giti@github.com/SolaceLabs/sl-solace-messaging-service-info.git</developerConnection>
+		<developerConnection>scm:git:git@github.com/SolaceLabs/sl-solace-messaging-service-info.git</developerConnection>
 	</scm>
 
 	<dependencies>
