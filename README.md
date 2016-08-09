@@ -29,31 +29,14 @@ The following is a brief introduction copied from their README:
 
 >Spring Cloud Connectors simplifies the process of connecting to services and gaining operating environment awareness in cloud platforms such as Cloud Foundry and Heroku, especially for Spring applications. It is designed for extensibility: you can use one of the provided cloud connectors or write one for your cloud platform, and you can use the built-in support for commonly-used services (relational databases, MongoDB, Redis, RabbitMQ) or extend Spring Cloud Connectors to work with your own services.
 
-## Using in your Spring Cloud application
+## Java Applications
 
-Here is an example of how this project can be used in your Spring Cloud application to simplify connecting to a Solace message router from a Cloud Foundry application. The code finds the `SolaceMessaging` Cloud Foundry service instance and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
+Applications can use this connector with Spring Cloud to access the information in VCAP_SERVICES environment variable, necessary to connect to a Solace Messaging Service Instance. The code finds the `SolaceMessaging` Cloud Foundry service instance and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
 
 ```java
 CloudFactory cloudFactory = new CloudFactory();
 Cloud cloud = cloudFactory.getCloud();
-
-trace.error(cloud.getCloudProperties());
-SolaceMessagingInfo solacemessaging = null;
-List<ServiceInfo> services = cloud.getServiceInfos();
-if (services == null) {
-  System.out.println("No services found!");
-} else {
-  for (ServiceInfo service : services) {
-    if (service instanceof SolaceMessagingInfo) {
-      solacemessaging = (SolaceMessagingInfo)service;
-    }
-  }
-}
-
-if (solacemessaging == null) {
-  System.out.println("Did not find Solace service. Aborting conenction");
-  return;
-}
+SolaceMessagingInfo solacemessaging = (SolaceMessagingInfo) cloud.getServiceInfo("MyService");
 
 // Setting up the JCSMP Connection
 final JCSMPProperties props = new JCSMPProperties();
@@ -65,6 +48,11 @@ props.setProperty(JCSMPProperties.PASSWORD, solacemessaging.getClientPassword())
 JCSMPSession session = JCSMPFactory.onlyInstance().createSession(props);
 session.connect();
 ```
+
+## Spring Applications
+
+TODO: Add details.
+
 
 ## Checking out and Building
 
