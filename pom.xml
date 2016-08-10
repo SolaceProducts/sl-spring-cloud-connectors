@@ -1,6 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.solacesystems.labs.cloud.cloudfoundry</groupId>
+	<groupId>com.solace.labs.cloud.cloudfoundry</groupId>
 	<artifactId>sol-labs-spring-cloud-connector</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
@@ -11,17 +12,17 @@
 
 	<licenses>
 		<license>
-			<name>SOLACE SYSTEMS, INC. LICENSE AGREEMENT</name>
-			<url>http://dev.solacesystems.com/solace-license.txt</url>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
 
 	<developers>
 		<developer>
-			<name>Solace</name>
-			<email>info@solacesystems.com</email>
+			<name>Mark Spielman</name>
+			<email>mark.spielman@solacesystems.com</email>
 			<organization>Solace Systems</organization>
-			<organizationUrl>http://www.solacesystems.com</organizationUrl>
+			<organizationUrl>http://dev.solacesystems.com</organizationUrl>
 		</developer>
 	</developers>
 
@@ -29,8 +30,8 @@
 		<url>https://github.com/SolaceLabs/sl-solace-messaging-service-info.git</url>
 		<connection>scm:git:git://github.com/SolaceLabs/sl-solace-messaging-service-info.git</connection>
 		<developerConnection>scm:git:git@github.com:SolaceLabs/sl-solace-messaging-service-info.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+		<tag>HEAD</tag>
+	</scm>
 
 	<dependencies>
 
@@ -154,7 +155,7 @@
 						<configuration>
 							<serverId>ossrh</serverId>
 							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<!--<stagingProfileId>1d86d96a0b6bce</stagingProfileId>-->
+							<!--<stagingProfileId>1d86d96a0b6bce</stagingProfileId> -->
 							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
