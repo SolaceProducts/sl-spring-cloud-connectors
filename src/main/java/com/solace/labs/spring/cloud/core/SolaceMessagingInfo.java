@@ -19,7 +19,6 @@
 package com.solace.labs.spring.cloud.core;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.cloud.service.BaseServiceInfo;
@@ -57,94 +56,39 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String managementPassword;
 	private String managementUsername;
 
-	// Some details about the binding
-	private String plan;
-
+	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
 		super(null);
 	}
-
-	public SolaceMessagingInfo(String id) {
+	
+	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
+			String smfUri, String smfTlsUri, String smfZipUri, String webMessagingUri, String jmsUri, String jmsTlsUri,
+			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
+			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHttpUris,
+			List<String> managementHttpsUris, String managementPassword, String managementUsername) {
 		super(id);
+		this.clientUsername = clientUsername;
+		this.clientPassword = clientPassword;
+		this.msgVpnName = msgVpnName;
+		this.smfUri = smfUri;
+		this.smfTlsUri = smfTlsUri;
+		this.smfZipUri = smfZipUri;
+		this.webMessagingUri = webMessagingUri;
+		this.jmsUri = jmsUri;
+		this.jmsTlsUri = jmsTlsUri;
+		this.restUris = restUris;
+		this.restTlsUris = restTlsUris;
+		this.mqttUris = mqttUris;
+		this.mqttTlsUris = mqttTlsUris;
+		this.mqttWsUris = mqttWsUris;
+		this.mqttWssUris = mqttWssUris;
+		this.managementHttpUris = managementHttpUris;
+		this.managementHttpsUris = managementHttpsUris;
+		this.managementPassword = managementPassword;
+		this.managementUsername = managementUsername;
 	}
 
-	@SuppressWarnings("unchecked")
-	public SolaceMessagingInfo(String id, Map<String, Object> credentials) {
-		super(id);
-
-		if (credentials == null) {
-			throw new IllegalArgumentException("Received null credentials during object creation");
-		}
-		
-		// Populate this the quick and dirty way for now. Can improve later as
-		// we harden. As a start, we'll be tolerant of missing attributes and
-		// just leave fields set to null.
-		for (Map.Entry<String, Object> entry : credentials.entrySet()) {
-			String key = entry.getKey();
-			Object value = entry.getValue();
-
-			switch (key) {
-			case "clientUsername":
-				clientUsername = (String) value;
-				break;
-			case "clientPassword":
-				clientPassword = (String) value;
-				break;
-			case "msgVpnName":
-				msgVpnName = (String) value;
-				break;
-			case "smfUri":
-				smfUri = (String) value;
-				break;
-			case "smfTlsUri":
-				smfTlsUri = (String) value;
-				break;
-			case "smfZipUri":
-				smfZipUri = (String) value;
-				break;
-			case "webMessagingUri":
-				webMessagingUri = (String) value;
-				break;
-			case "jmsUri":
-				jmsUri = (String) value;
-				break;
-			case "jmsTlsUri":
-				jmsTlsUri = (String) value;
-				break;
-			case "managementUsername":
-				managementUsername = (String) value;
-				break;
-			case "managementPassword":
-				managementPassword = (String) value;
-				break;
-			case "restUris":
-				restUris = (List<String>) value;
-				break;
-			case "restTlsUris":
-				restTlsUris = (List<String>) value;
-				break;
-			case "mqttUris":
-				mqttUris = (List<String>) value;
-				break;
-			case "mqttTlsUris":
-				mqttTlsUris = (List<String>) value;
-				break;
-			case "mqttWsUris":
-				mqttWsUris = (List<String>) value;
-				break;
-			case "mqttWssUris":
-				mqttWssUris = (List<String>) value;
-				break;
-			case "managementHttpUris":
-				managementHttpUris = (List<String>) value;
-				break;
-			case "managementHttpsUris":
-				managementHttpsUris = (List<String>) value;
-				break;
-			}
-		}
-
-	}
+	
 
 	/**
 	 * @return the clientUsername
@@ -337,7 +281,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((smfUri == null) ? 0 : smfUri.hashCode());
 		result = prime * result + ((smfZipUri == null) ? 0 : smfZipUri.hashCode());
 		result = prime * result + ((webMessagingUri == null) ? 0 : webMessagingUri.hashCode());
-		result = prime * result + ((plan == null) ? 0 : plan.hashCode());
 		return result;
 	}
 
@@ -454,11 +397,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.webMessagingUri != null)
 				return false;
 		} else if (!webMessagingUri.equals(other.webMessagingUri))
-			return false;
-		if (plan == null) {
-			if (other.plan != null)
-				return false;
-		} else if (!plan.equals(other.plan))
 			return false;
 		return true;
 	}

@@ -18,6 +18,7 @@
  */
 package com.solace.labs.spring.cloud.cloudfoundry;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator;
@@ -27,52 +28,118 @@ import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
 
 public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<SolaceMessagingInfo> {
 
-	//private static final Log trace = LogFactory.getLog(SolaceMessagingInfoCreator.class);
+	// This creator will accept and parse any credentials that have the matching tag or label. 
+	// Therefore the default accept method is sufficient and doesn't need further specification.
+	static private String solaceMessagingTag = "solace-messaging";
 
-	String label = "solace-messaging";
-	
 	public SolaceMessagingInfoCreator() {
-		super(new Tags("solace-messaging", 
-				 "solace",
-			     "rest",
-			     "mqtt",
-			     "mq",
-			     "queue",
-			     "event-streaming",
-			     "amqp",
-			     "jms",
-			     "messaging"));
+		super(new Tags(solaceMessagingTag));
 	}
-	
-	
-	// As a starting point, will only accept if the labels match.
-	public boolean accept(Map<String, Object> serviceData) {
-		String serviceLabel = (String) serviceData.get("label");
-		
-		if (!super.accept(serviceData)) 
-			return false;
-		
-		if (!this.label.equals(serviceLabel))
-			return false;
-		
-		return true;
-	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public SolaceMessagingInfo createServiceInfo(Map<String, Object> serviceData) {
 		String id = getId(serviceData);
 
+		String clientUsername = null;
+		String clientPassword = null;
+		String msgVpnName = null;
+		String smfUri = null;
+		String smfTlsUri = null;
+		String smfZipUri = null;
+		String webMessagingUri = null;
+		String jmsUri = null;
+		String jmsTlsUri = null;
+		List<String> restUris = null;
+		List<String> restTlsUris = null;
+		List<String> mqttUris = null;
+		List<String> mqttTlsUris = null;
+		List<String> mqttWsUris = null;
+		List<String> mqttWssUris = null;
+		List<String> managementHttpUris = null;
+		List<String> managementHttpsUris = null;
+		String managementPassword = null;
+		String managementUsername = null;
+
 		Map<String, Object> credentials = getCredentials(serviceData);
 
-		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, credentials);
-		
+		if (credentials == null) {
+			throw new IllegalArgumentException("Received null credentials during object creation");
+		}
+
+		// Populate this the quick and dirty way for now. Can improve later as
+		// we harden. As a start, we'll be tolerant of missing attributes and
+		// just leave fields set to null.
+		for (Map.Entry<String, Object> entry : credentials.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			switch (key) {
+			case "clientUsername":
+				clientUsername = (String) value;
+				break;
+			case "clientPassword":
+				clientPassword = (String) value;
+				break;
+			case "msgVpnName":
+				msgVpnName = (String) value;
+				break;
+			case "smfUri":
+				smfUri = (String) value;
+				break;
+			case "smfTlsUri":
+				smfTlsUri = (String) value;
+				break;
+			case "smfZipUri":
+				smfZipUri = (String) value;
+				break;
+			case "webMessagingUri":
+				webMessagingUri = (String) value;
+				break;
+			case "jmsUri":
+				jmsUri = (String) value;
+				break;
+			case "jmsTlsUri":
+				jmsTlsUri = (String) value;
+				break;
+			case "managementUsername":
+				managementUsername = (String) value;
+				break;
+			case "managementPassword":
+				managementPassword = (String) value;
+				break;
+			case "restUris":
+				restUris = (List<String>) value;
+				break;
+			case "restTlsUris":
+				restTlsUris = (List<String>) value;
+				break;
+			case "mqttUris":
+				mqttUris = (List<String>) value;
+				break;
+			case "mqttTlsUris":
+				mqttTlsUris = (List<String>) value;
+				break;
+			case "mqttWsUris":
+				mqttWsUris = (List<String>) value;
+				break;
+			case "mqttWssUris":
+				mqttWssUris = (List<String>) value;
+				break;
+			case "managementHttpUris":
+				managementHttpUris = (List<String>) value;
+				break;
+			case "managementHttpsUris":
+				managementHttpsUris = (List<String>) value;
+				break;
+			}
+		}
+
+		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
+				smfUri, smfTlsUri, smfZipUri, webMessagingUri, jmsUri, jmsTlsUri, restUris, restTlsUris, mqttUris,
+				mqttTlsUris, mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
+				managementUsername);
+
 		return solMessagingInfo;
-	}
-
-	// These will come later from future version of Spring Cloud. For now clone
-	// methods here.
-
-	@SuppressWarnings("unchecked")
-	protected Map<String, Object> getCredentials(Map<String, Object> serviceData) {
-		return (Map<String, Object>) serviceData.get("credentials");
 	}
 }

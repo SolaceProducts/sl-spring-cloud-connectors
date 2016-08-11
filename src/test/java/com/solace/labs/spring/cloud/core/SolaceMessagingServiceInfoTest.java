@@ -25,96 +25,87 @@ import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 import org.meanbean.test.EqualsMethodTester;
 
-import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
-
-
-
-
-
 public class SolaceMessagingServiceInfoTest {
 
 	@Test
-	public void basicConstructorTest() {
-		SolaceMessagingInfo smi = new SolaceMessagingInfo("test-instance");
-		Assert.assertEquals("test-instance", smi.getId());
-		
-		
-	}
-	
-	@Test
 	public void fullSetGetCredentialsTest() throws IllegalAccessException, InvocationTargetException {
-		
-		Map<String, Object> exCred = new HashMap<String, Object>();
-		exCred.put("clientUsername", "sample-client-username");
-		exCred.put("clientPassword", "sample-client-password");
-		exCred.put("msgVpnName", "sample-msg-vpn");
-		exCred.put("smfUri", "tcp://192.168.1.50:7000");
-		exCred.put("smfTlsUri", "tcps://192.168.1.50:7003");
-		exCred.put("smfZipUri", "tcp://192.168.1.50:7001");
-		exCred.put("webMessagingUri", "http://192.168.1.50:80");
-		exCred.put("jmsUri", "smf://192.168.1.50:7000");
-		exCred.put("jmsTlsUri", "smfs://192.168.1.50:7003");
-		exCred.put("mqttUris", Arrays.asList("tcp://192.168.1.50:7020"));
-		exCred.put("mqttTlsUris", Arrays.asList("ssl://192.168.1.50:7021"));
-		exCred.put("mqttWsUris", Arrays.asList("ws://192.168.1.50:7022"));
-		exCred.put("mqttWssUris", Arrays.asList("wss://192.168.1.50:7023"));
-		exCred.put("restUris", Arrays.asList("http://192.168.1.50:7018"));
-		exCred.put("restTlsUris", Arrays.asList("https://192.168.1.50:7019"));
-		exCred.put("managementHttpUris", Arrays.asList("http://192.168.1.50:8080/SEMP/v2"));
-		exCred.put("managementHttpsUris", Arrays.asList("https://192.168.1.50:443/SEMP/v2"));
-		exCred.put("managementUsername", "sample-mgmt-username");
-		exCred.put("managementPassword", "sample-mgmt-password");
-		
-		SolaceMessagingInfo smi = new SolaceMessagingInfo("full-credentials-instance", exCred);
-		
+
+		String id = "full-credentials-instance";
+		String clientUsername = "sample-client-username";
+		String clientPassword = "sample-client-password";
+		String msgVpnName = "sample-msg-vpn";
+		String smfUri = "tcp://192.168.1.50:7000";
+		String smfTlsUri = "tcps://192.168.1.50:7003";
+		String smfZipUri = "tcp://192.168.1.50:7001";
+		String webMessagingUri = "http://192.168.1.50:80";
+		String jmsUri = "smf://192.168.1.50:7000";
+		String jmsTlsUri = "smfs://192.168.1.50:7003";
+		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
+		List<String> mqttTlsUris = Arrays.asList("ssl://192.168.1.50:7021");
+		List<String> mqttWsUris = Arrays.asList("ws://192.168.1.50:7022");
+		List<String> mqttWssUris = Arrays.asList("wss://192.168.1.50:7023");
+		List<String> restUris = Arrays.asList("http://192.168.1.50:7018");
+		List<String> restTlsUris = Arrays.asList("https://192.168.1.50:7019");
+		List<String> managementHttpUris = Arrays.asList("http://192.168.1.50:8080/SEMP/v2");
+		List<String> managementHttpsUris = Arrays.asList("https://192.168.1.50:443/SEMP/v2");
+		String managementUsername = "sample-mgmt-username";
+		String managementPassword = "sample-mgmt-password";
+
+		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfUri,
+				smfTlsUri, smfZipUri, webMessagingUri, jmsUri, jmsTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
+				mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
+				managementUsername);
+
 		// Check Top Level stuff
-		assertEquals("full-credentials-instance", smi.getId());
-		assertEquals("sample-client-username", smi.getClientUsername());
-		assertEquals("sample-client-password", smi.getClientPassword());
-		assertEquals("sample-msg-vpn", smi.getMsgVpnName());
-		
+		assertEquals(id, smi.getId());
+		assertEquals(clientUsername, smi.getClientUsername());
+		assertEquals(clientPassword, smi.getClientPassword());
+		assertEquals(msgVpnName, smi.getMsgVpnName());
+
 		// Check SMF
-		assertEquals("tcp://192.168.1.50:7000", smi.getSmfUri());
-		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsUri());
-		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipUri());
-		
+		assertEquals(smfUri, smi.getSmfUri());
+		assertEquals(smfTlsUri, smi.getSmfTlsUri());
+		assertEquals(smfZipUri, smi.getSmfZipUri());
+
 		// Check Web Messsaging
-		assertEquals("http://192.168.1.50:80", smi.getWebMessagingUri());
-		
+		assertEquals(webMessagingUri, smi.getWebMessagingUri());
+
 		// Check JMS
-		assertThat(smi.getMqttUris(), is(Arrays.asList("tcp://192.168.1.50:7020")));
-		assertThat(smi.getMqttTlsUris(), is(Arrays.asList("ssl://192.168.1.50:7021")));
-		assertThat(smi.getMqttWsUris(), is(Arrays.asList("ws://192.168.1.50:7022")));
-		assertThat(smi.getMqttWssUris(), is(Arrays.asList("wss://192.168.1.50:7023")));
-		
+		assertEquals(jmsUri, smi.getJmsUri());
+		assertEquals(jmsTlsUri, smi.getJmsTlsUri());
+
+		// Check MQTT
+		assertThat(smi.getMqttUris(), is(mqttUris));
+		assertThat(smi.getMqttTlsUris(), is(mqttTlsUris));
+		assertThat(smi.getMqttWsUris(), is(mqttWsUris));
+		assertThat(smi.getMqttWssUris(), is(mqttWssUris));
+
 		// Check REST
-		assertThat(smi.getRestUris(), is(Arrays.asList("http://192.168.1.50:7018")));
-		assertThat(smi.getRestTlsUris(), is(Arrays.asList("https://192.168.1.50:7019")));
-		
+		assertThat(smi.getRestUris(), is(restUris));
+		assertThat(smi.getRestTlsUris(), is(restTlsUris));
+
 		// Check Management Interfaces
-		assertThat(smi.getManagementHttpUris(), is(Arrays.asList("http://192.168.1.50:8080/SEMP/v2")));
-		assertThat(smi.getManagementHttpsUris(), is(Arrays.asList("https://192.168.1.50:443/SEMP/v2")));
-		assertEquals("sample-mgmt-username", smi.getManagementUsername());
-		assertEquals("sample-mgmt-password", smi.getManagementPassword());
+		assertThat(smi.getManagementHttpUris(), is(managementHttpUris));
+		assertThat(smi.getManagementHttpsUris(), is(managementHttpsUris));
+		assertEquals(managementUsername, smi.getManagementUsername());
+		assertEquals(managementPassword, smi.getManagementPassword());
 
 	}
-	
+
 	@Test
 	public void meanBeanGetterAndSetterCorrectness() throws Exception {
-	    new BeanTester().testBean(SolaceMessagingInfo.class);
+		new BeanTester().testBean(SolaceMessagingInfo.class);
 	}
 
-    @Test
-    public void meanBeanEqualsAndHashCodeContract() {
-    	EqualsMethodTester tester = new EqualsMethodTester();
-    	tester.testEqualsMethod(SolaceMessagingInfo.class);
-    }
+	@Test
+	public void meanBeanEqualsAndHashCodeContract() {
+		EqualsMethodTester tester = new EqualsMethodTester();
+		tester.testEqualsMethod(SolaceMessagingInfo.class);
+	}
 }
