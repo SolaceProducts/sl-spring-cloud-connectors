@@ -46,9 +46,9 @@
 	</developers>
 
 	<scm>
-		<url>https://github.com/SolaceLabs/sl-solace-messaging-service-info.git</url>
-		<connection>scm:git:git://github.com/SolaceLabs/sl-solace-messaging-service-info.git</connection>
-		<developerConnection>scm:git:git@github.com:SolaceLabs/sl-solace-messaging-service-info.git</developerConnection>
+		<url>https://github.com/SolaceLabs/sl-spring-cloud-connectors.git</url>
+		<connection>scm:git:git://github.com/SolaceLabs/sl-spring-cloud-connectors.git</connection>
+		<developerConnection>scm:git:git@github.com:SolaceLabs/sl-spring-cloud-connectors.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
