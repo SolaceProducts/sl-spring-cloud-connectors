@@ -22,7 +22,7 @@
 	<groupId>com.solace.labs.cloud.cloudfoundry</groupId>
 	<artifactId>solace-labs-spring-cloud-connector</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>Spring Cloud Connectors for Solace Messaging on Cloud Foundry</name>
 	<description>Spring Cloud Connectors for Solace Messaging on Cloud Foundry.</description>
 
