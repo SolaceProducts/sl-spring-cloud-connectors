@@ -1,4 +1,4 @@
-![](https://travis-ci.org/SolaceLabs/sl-solace-messaging-service-info.svg?branch=master)
+![](https://travis-ci.org/SolaceLabs/sl-solace-messaging-service-info.svg?branch=v0.1-maintenance)
 
 # Solace Messaging Spring Cloud Connectors
 
