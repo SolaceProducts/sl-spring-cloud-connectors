@@ -40,12 +40,12 @@ public class SolaceMessagingServiceInfoTest {
 		String clientUsername = "sample-client-username";
 		String clientPassword = "sample-client-password";
 		String msgVpnName = "sample-msg-vpn";
-		String smfUri = "tcp://192.168.1.50:7000";
-		String smfTlsUri = "tcps://192.168.1.50:7003";
-		String smfZipUri = "tcp://192.168.1.50:7001";
+		String smfHost = "tcp://192.168.1.50:7000";
+		String smfTlsHost = "tcps://192.168.1.50:7003";
+		String smfZipHost = "tcp://192.168.1.50:7001";
 		String webMessagingUri = "http://192.168.1.50:80";
-		String jmsUri = "smf://192.168.1.50:7000";
-		String jmsTlsUri = "smfs://192.168.1.50:7003";
+		String jmsJndiUri = "smf://192.168.1.50:7000";
+		String jmsJndiTlsUri = "smfs://192.168.1.50:7003";
 		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
 		List<String> mqttTlsUris = Arrays.asList("ssl://192.168.1.50:7021");
 		List<String> mqttWsUris = Arrays.asList("ws://192.168.1.50:7022");
@@ -57,8 +57,8 @@ public class SolaceMessagingServiceInfoTest {
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
 
-		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfUri,
-				smfTlsUri, smfZipUri, webMessagingUri, jmsUri, jmsTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
+		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
+				smfTlsHost, smfZipHost, webMessagingUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
 				managementUsername);
 
@@ -69,16 +69,16 @@ public class SolaceMessagingServiceInfoTest {
 		assertEquals(msgVpnName, smi.getMsgVpnName());
 
 		// Check SMF
-		assertEquals(smfUri, smi.getSmfUri());
-		assertEquals(smfTlsUri, smi.getSmfTlsUri());
-		assertEquals(smfZipUri, smi.getSmfZipUri());
+		assertEquals(smfHost, smi.getSmfHost());
+		assertEquals(smfTlsHost, smi.getSmfTlsHost());
+		assertEquals(smfZipHost, smi.getSmfZipHost());
 
 		// Check Web Messsaging
 		assertEquals(webMessagingUri, smi.getWebMessagingUri());
 
 		// Check JMS
-		assertEquals(jmsUri, smi.getJmsUri());
-		assertEquals(jmsTlsUri, smi.getJmsTlsUri());
+		assertEquals(jmsJndiUri, smi.getJmsJndiUri());
+		assertEquals(jmsJndiTlsUri, smi.getJmsJndiTlsUri());
 
 		// Check MQTT
 		assertThat(smi.getMqttUris(), is(mqttUris));

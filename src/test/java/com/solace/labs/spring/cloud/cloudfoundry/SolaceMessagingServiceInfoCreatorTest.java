@@ -92,7 +92,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 
 		@SuppressWarnings("unchecked")
 		Map<String, Object> exCred = (Map<String, Object>) exVcapServices.get("credentials");
-		exCred.remove("smfUri");
+		exCred.remove("smfHost");
 		
 		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
 
@@ -102,8 +102,8 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		SolaceMessagingInfo smi = smic.createServiceInfo(exVcapServices);
 		
 		// Validate smf is null. Others are not
-		assertNull(smi.getSmfUri());
-		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsUri());
+		assertNull(smi.getSmfHost());
+		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
 		
 	}
 	
@@ -150,12 +150,12 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("clientUsername", "sample-client-username");
 		exCred.put("clientPassword", "sample-client-password");
 		exCred.put("msgVpnName", "sample-msg-vpn");
-		exCred.put("smfUri", "tcp://192.168.1.50:7000");
-		exCred.put("smfTlsUri", "tcps://192.168.1.50:7003");
-		exCred.put("smfZipUri", "tcp://192.168.1.50:7001");
+		exCred.put("smfHost", "tcp://192.168.1.50:7000");
+		exCred.put("smfTlsHost", "tcps://192.168.1.50:7003");
+		exCred.put("smfZipHost", "tcp://192.168.1.50:7001");
 		exCred.put("webMessagingUri", "http://192.168.1.50:80");
-		exCred.put("jmsUri", "smf://192.168.1.50:7000");
-		exCred.put("jmsTlsUri", "smfs://192.168.1.50:7003");
+		exCred.put("jmsJndiUri", "smf://192.168.1.50:7000");
+		exCred.put("jmsJndiTlsUri", "smfs://192.168.1.50:7003");
 		exCred.put("mqttUris", Arrays.asList("tcp://192.168.1.50:7020"));
 		exCred.put("mqttTlsUris", Arrays.asList("ssl://192.168.1.50:7021"));
 		exCred.put("mqttWsUris", Arrays.asList("ws://192.168.1.50:7022"));
@@ -187,9 +187,9 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertEquals("sample-msg-vpn", smi.getMsgVpnName());
 
 		// Check SMF
-		assertEquals("tcp://192.168.1.50:7000", smi.getSmfUri());
-		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsUri());
-		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipUri());
+		assertEquals("tcp://192.168.1.50:7000", smi.getSmfHost());
+		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
+		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipHost());
 
 		// Check Web Messsaging
 		assertEquals("http://192.168.1.50:80", smi.getWebMessagingUri());
