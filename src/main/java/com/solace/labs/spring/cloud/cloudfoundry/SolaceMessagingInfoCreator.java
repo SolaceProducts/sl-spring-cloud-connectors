@@ -44,12 +44,12 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		String clientUsername = null;
 		String clientPassword = null;
 		String msgVpnName = null;
-		String smfUri = null;
-		String smfTlsUri = null;
-		String smfZipUri = null;
+		String smfHost = null;
+		String smfTlsHost = null;
+		String smfZipHost = null;
 		String webMessagingUri = null;
-		String jmsUri = null;
-		String jmsTlsUri = null;
+		String jmsJndiUri = null;
+		String jmsJndiTlsUri = null;
 		List<String> restUris = null;
 		List<String> restTlsUris = null;
 		List<String> mqttUris = null;
@@ -84,23 +84,23 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 			case "msgVpnName":
 				msgVpnName = (String) value;
 				break;
-			case "smfUri":
-				smfUri = (String) value;
+			case "smfHost":
+				smfHost = (String) value;
 				break;
-			case "smfTlsUri":
-				smfTlsUri = (String) value;
+			case "smfTlsHost":
+				smfTlsHost = (String) value;
 				break;
-			case "smfZipUri":
-				smfZipUri = (String) value;
+			case "smfZipHost":
+				smfZipHost = (String) value;
 				break;
 			case "webMessagingUri":
 				webMessagingUri = (String) value;
 				break;
-			case "jmsUri":
-				jmsUri = (String) value;
+			case "jmsJndiUri":
+				jmsJndiUri = (String) value;
 				break;
-			case "jmsTlsUri":
-				jmsTlsUri = (String) value;
+			case "jmsJndiTlsUri":
+				jmsJndiTlsUri = (String) value;
 				break;
 			case "managementUsername":
 				managementUsername = (String) value;
@@ -136,7 +136,7 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		}
 
 		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
-				smfUri, smfTlsUri, smfZipUri, webMessagingUri, jmsUri, jmsTlsUri, restUris, restTlsUris, mqttUris,
+				smfHost, smfTlsHost, smfZipHost, webMessagingUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
 				mqttTlsUris, mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
 				managementUsername);
 
