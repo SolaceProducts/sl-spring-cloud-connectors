@@ -12,6 +12,7 @@ A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Sp
 * [Spring Applications](#spring-applications)
 * [Checking out and Building](#checking-out-and-building)
 * [Example Build Dependency](#example-build-dependency)
+* [Contributing](#contributing)
 * [Versioning](#versioning)
 * [Authors](#authors)
 * [License](#license)
@@ -119,4 +120,4 @@ For more information about Solace technology in general try these resources:
 
 - The Solace Developer Portal website at: http://dev.solacesystems.com
 - Get a better understanding of [Solace technology.](http://dev.solacesystems.com/tech/)
-- Ask the [Solace community].(http://dev.solacesystems.com/community/)
+- Ask the [Solace community](http://dev.solacesystems.com/community/).
