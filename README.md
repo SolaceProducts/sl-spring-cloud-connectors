@@ -12,6 +12,9 @@ A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Sp
 * [Spring Applications](#spring-applications)
 * [Checking out and Building](#checking-out-and-building)
 * [Example Build Dependency](#example-build-dependency)
+* [Versioning](#versioning)
+* [Authors](#authors)
+* [License](#license)
 * [Resources](#resources)
 
 
@@ -80,6 +83,20 @@ If you're building with Gradle, you can simply add the following to your depende
 // Solace Cloud
 compile("com.solacesystems.labs.cloud:sol-labs-spring-cloud-connector:+")
 ```
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/SolaceLabs/sl-solace-messaging-service-info/tags). 
+
+## Authors
+
+* **Mark Spielman** - *Initial work* - [Solace Systems](https://dev.solacesystems.com)
+
+See also the list of [contributors](https://github.com/SolaceLabs/sl-solace-messaging-service-info/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. - See the [LICENSE](LICENSE) file for details.
 
 ## Resources
 
