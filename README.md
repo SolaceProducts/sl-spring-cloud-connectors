@@ -84,6 +84,10 @@ If you're building with Gradle, you can simply add the following to your depende
 compile("com.solacesystems.labs.cloud:sol-labs-spring-cloud-connector:+")
 ```
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/SolaceLabs/sl-solace-messaging-service-info/tags). 
@@ -115,3 +119,4 @@ For more information about Solace technology in general try these resources:
 
 - The Solace Developer Portal website at: http://dev.solacesystems.com
 - Get a better understanding of [Solace technology.](http://dev.solacesystems.com/tech/)
+- Ask the [Solace community].(http://dev.solacesystems.com/community/)
