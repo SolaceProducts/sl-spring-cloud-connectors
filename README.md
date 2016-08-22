@@ -95,7 +95,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Mark Spielman** - *Initial work* - [Solace Systems](https://dev.solacesystems.com)
+* **[Mark Spielman](https://github.com/mdspielman)** - *Initial work* - [Solace Systems](https://dev.solacesystems.com)
 
 See also the list of [contributors](https://github.com/SolaceLabs/sl-solace-messaging-service-info/contributors) who participated in this project.
 
