@@ -106,7 +106,7 @@ This project is licensed under the Apache License, Version 2.0. - See the [LICEN
 ## Resources
 
 For more information about Cloud Foundry and the Solace messaging service these resources:
-- TODO - Need link to online Solace CloudFoundry documentation.
+- [Solace Messaging for Pivotal Cloud Foundry](http://docs.pivotal.io/solace-messaging/)
 - [Cloud Foundry Documentation](http://docs.cloudfoundry.org/)
 - For an introduction to Cloud Foundry: https://www.cloudfoundry.org/
 
