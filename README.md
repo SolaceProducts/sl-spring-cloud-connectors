@@ -10,8 +10,8 @@ A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Sp
 * [Spring Cloud Connectors](#spring-cloud-connectors)
 * [Java Applications](#java-applications)
 * [Spring Applications](#spring-applications)
+* [Using it in your Application](#using-it-in-your-application)
 * [Checking out and Building](#checking-out-and-building)
-* [Example Build Dependency](#example-build-dependency)
 * [Contributing](#contributing)
 * [Versioning](#versioning)
 * [Authors](#authors)
@@ -60,6 +60,28 @@ session.connect();
 TODO: Add details.
 
 
+## Using it in your Application
+
+If you're building with Gradle, you can simply add the following to your dependencies:
+
+### Using it with Gradle
+
+```
+// Solace Cloud
+compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:0.1+")
+```
+
+### Using it with Maven
+
+```
+<!-- Solace Cloud -->
+<dependency>
+  <groupId>com.solace.labs.cloud.cloudfoundry</groupId>
+  <artifactId>solace-labs-spring-cloud-connector</artifactId>
+  <version>0.1+</version>
+</dependency>
+```
+
 ## Checking out and Building
 
 This project depends on maven for building. To build the jar locally, check out the project and build from source by doing the following:
@@ -76,14 +98,6 @@ target/sol-labs-spring-cloud-connector-1.0-SNAPSHOT.jar
 
 You can install this file in your maven repository locally.
 
-## Example Build Dependency
-
-If you're building with Gradle, you can simply add the following to your dependencies:
-
-```
-// Solace Cloud
-compile("com.solacesystems.labs.cloud:sol-labs-spring-cloud-connector:+")
-```
 
 ## Contributing
 
