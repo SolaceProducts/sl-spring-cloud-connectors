@@ -62,7 +62,9 @@ TODO: Add details.
 
 ## Using it in your Application
 
-If you're building with Gradle, you can simply add the following to your dependencies:
+This releases from this project are hosted in [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.solace.labs.cloud.cloudfoundry%22%20AND%20a%3A%22solace-labs-spring-cloud-connector%22)
+
+Here is how to include it in your project using Gradle and Maven.
 
 ### Using it with Gradle
 
