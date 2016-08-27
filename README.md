@@ -2,7 +2,7 @@
 
 # Solace Messaging Spring Cloud Connectors
 
-A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for SolaceMessaging in Cloud Foundry.
+A Spring Cloud Connector for an instance of Solace Messaging in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for Solace Messaging in Cloud Foundry.
 
 ## Contents
 
@@ -23,9 +23,9 @@ A Spring Cloud Connector for an instance of SolaceMessaging in Cloud Foundry. Sp
 
 ## Overview
 
-This project provides an implementation of the ServiceInfo and ServiceInfoCreator interfaces to extend the Spring Cloud Connectors project to the SolaceMessaging Cloud Foundry service. Using this in your Spring application can make consuming the Solace messaging service simpler than straight parsing of the `VCAP_SERVICES` environment variable.
+This project provides an implementation of the ServiceInfo and ServiceInfoCreator interfaces to extend the Spring Cloud Connectors project to the Solace Messaging Cloud Foundry service. Using this in your Spring application can make consuming the Solace messaging service simpler than straight parsing of the `VCAP_SERVICES` environment variable.
 
-The Spring cloud documentation provides both a nice introduction to Cloud Connectors and a nice overview of the options for [extending Spring Cloud](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html#_extending_spring_cloud_connectors). This project provides a Cloud Service Support extension to make it easy to consume the SolaceMessaging Cloud Foundry Service in your Cloud Foundry application.
+The Spring cloud documentation provides both a nice introduction to Cloud Connectors and a nice overview of the options for [extending Spring Cloud](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html#_extending_spring_cloud_connectors). This project provides a Cloud Service Support extension to make it easy to consume the Solace Messaging Cloud Foundry Service in your Cloud Foundry application.
 
 ## Spring Cloud connectors
 
@@ -37,7 +37,7 @@ The following is a brief introduction copied from their README:
 
 ## Java Applications
 
-Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance. The code finds the `SolaceMessaging` Cloud Foundry service instance and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
+Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance. The code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
 
 ```java
 CloudFactory cloudFactory = new CloudFactory();
@@ -121,7 +121,7 @@ This project is licensed under the Apache License, Version 2.0. - See the [LICEN
 
 ## Resources
 
-For more information about Cloud Foundry and the Solace messaging service these resources:
+For more information about Cloud Foundry and the Solace Messaging service these resources:
 - [Solace Messaging for Pivotal Cloud Foundry](http://docs.pivotal.io/solace-messaging/)
 - [Cloud Foundry Documentation](http://docs.cloudfoundry.org/)
 - For an introduction to Cloud Foundry: https://www.cloudfoundry.org/
