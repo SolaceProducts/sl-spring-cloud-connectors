@@ -27,7 +27,7 @@ This project provides an implementation of the ServiceInfo and ServiceInfoCreato
 
 The Spring cloud documentation provides both a nice introduction to Cloud Connectors and a nice overview of the options for [extending Spring Cloud](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html#_extending_spring_cloud_connectors). This project provides a Cloud Service Support extension to make it easy to consume the Solace Messaging Cloud Foundry Service in your Cloud Foundry application. The following diagram attempts to provide an architectural overview of what is implemented in this project.
 
-![Architecture](resource/Architecture.png)
+![Architecture](resources/Architecture.png)
 
 ## Spring Cloud connectors
 
