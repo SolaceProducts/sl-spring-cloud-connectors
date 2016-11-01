@@ -102,6 +102,13 @@ target/sol-labs-spring-cloud-connector-1.0-SNAPSHOT.jar
 
 You can install this file in your maven repository locally.
 
+## Release Notes
+
+### 0.2 
+* Update `SolaceMessagingInfo` to support TLS feature of Solace Messaging for PCF. Constructor changes are not backwards compatible. 
+
+### 0.1
+* First release supporting Solace Messaging for PCF Open Beta Tile.
 
 ## Contributing
 
