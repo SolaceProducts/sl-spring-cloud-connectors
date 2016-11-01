@@ -55,6 +55,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private List<String> managementHttpsUris;
 	private String managementPassword;
 	private String managementUsername;
+	private String webMessagingTlsUri;
 
 	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
@@ -62,7 +63,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 	
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
-			String smfHost, String smfTlsHost, String smfZipHost, String webMessagingUri, String jmsJndiUri, String jmsJndiTlsUri,
+			String smfHost, String smfTlsHost, String smfZipHost, String webMessagingUri,String webMessagingTlsUri, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
 			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHttpUris,
 			List<String> managementHttpsUris, String managementPassword, String managementUsername) {
@@ -74,6 +75,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.smfTlsHost = smfTlsHost;
 		this.smfZipHost = smfZipHost;
 		this.webMessagingUri = webMessagingUri;
+		this.webMessagingTlsUri = webMessagingTlsUri;
 		this.jmsJndiUri = jmsJndiUri;
 		this.jmsJndiTlsUri = jmsJndiTlsUri;
 		this.restUris = restUris;
@@ -144,6 +146,14 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	@ServiceProperty
 	public String getWebMessagingUri() {
 		return webMessagingUri;
+	}
+	
+	/**
+	 * @return the webMessagingTlsUri
+	 */
+	@ServiceProperty
+	public String getWebMessagingTlsUri() {
+		return webMessagingTlsUri;
 	}
 
 	/**
@@ -281,6 +291,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((smfHost == null) ? 0 : smfHost.hashCode());
 		result = prime * result + ((smfZipHost == null) ? 0 : smfZipHost.hashCode());
 		result = prime * result + ((webMessagingUri == null) ? 0 : webMessagingUri.hashCode());
+		result = prime * result + ((webMessagingTlsUri == null) ? 0 : webMessagingTlsUri.hashCode());
 		return result;
 	}
 
@@ -397,6 +408,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.webMessagingUri != null)
 				return false;
 		} else if (!webMessagingUri.equals(other.webMessagingUri))
+			return false;
+		if (webMessagingTlsUri == null) {
+			if (other.webMessagingTlsUri != null)
+				return false;
+		} else if (!webMessagingTlsUri.equals(other.webMessagingTlsUri))
 			return false;
 		return true;
 	}
