@@ -12,6 +12,7 @@ A Spring Cloud Connector for an instance of Solace Messaging in Cloud Foundry. S
 * [Spring Applications](#spring-applications)
 * [Using it in your Application](#using-it-in-your-application)
 * [Checking out and Building](#checking-out-and-building)
+* [Release Notes](#release-notes)
 * [Contributing](#contributing)
 * [Versioning](#versioning)
 * [Authors](#authors)
