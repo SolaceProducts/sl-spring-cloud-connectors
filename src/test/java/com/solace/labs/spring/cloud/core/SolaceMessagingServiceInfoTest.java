@@ -44,6 +44,7 @@ public class SolaceMessagingServiceInfoTest {
 		String smfTlsHost = "tcps://192.168.1.50:7003";
 		String smfZipHost = "tcp://192.168.1.50:7001";
 		String webMessagingUri = "http://192.168.1.50:80";
+		String webMessagingTlsUri = "https://192.168.1.50:80";
 		String jmsJndiUri = "smf://192.168.1.50:7000";
 		String jmsJndiTlsUri = "smfs://192.168.1.50:7003";
 		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
@@ -58,7 +59,7 @@ public class SolaceMessagingServiceInfoTest {
 		String managementPassword = "sample-mgmt-password";
 
 		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
-				smfTlsHost, smfZipHost, webMessagingUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
+				smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
 				managementUsername);
 

@@ -154,6 +154,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("smfTlsHost", "tcps://192.168.1.50:7003");
 		exCred.put("smfZipHost", "tcp://192.168.1.50:7001");
 		exCred.put("webMessagingUri", "http://192.168.1.50:80");
+		exCred.put("webMessagingTlsUri", "https://192.168.1.50:80");
 		exCred.put("jmsJndiUri", "smf://192.168.1.50:7000");
 		exCred.put("jmsJndiTlsUri", "smfs://192.168.1.50:7003");
 		exCred.put("mqttUris", Arrays.asList("tcp://192.168.1.50:7020"));
