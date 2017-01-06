@@ -12,9 +12,8 @@ A Spring Cloud Connector for an instance of Solace Messaging in Cloud Foundry. S
 * [Spring Applications](#spring-applications)
 * [Using it in your Application](#using-it-in-your-application)
 * [Checking out and Building](#checking-out-and-building)
-* [Release Notes](#release-notes)
 * [Contributing](#contributing)
-* [Versioning](#versioning)
+* [Release Notes & Versioning](#release-notes-and-versioning)
 * [Authors](#authors)
 * [License](#license)
 * [Resources](#resources)
@@ -103,24 +102,13 @@ target/sol-labs-spring-cloud-connector-1.0-SNAPSHOT.jar
 
 You can install this file in your maven repository locally.
 
-## Release Notes
-
-### 0.3
-* Updated for Solace Messaging for PCF v 0.3
-
-### 0.2 
-* Update `SolaceMessagingInfo` to support TLS feature of Solace Messaging for PCF. Constructor changes are not backwards compatible. 
-
-### 0.1
-* First release supporting Solace Messaging for PCF Open Beta Tile.
-
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+## Release Notes and Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/SolaceLabs/sl-solace-messaging-service-info/tags). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceLabs/sl-solace-messaging-service-info/releases). 
 
 ## Authors
 
