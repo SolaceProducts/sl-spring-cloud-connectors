@@ -105,6 +105,9 @@ You can install this file in your maven repository locally.
 
 ## Release Notes
 
+### 0.3
+* Updated for Solace Messaging for PCF v 0.3
+
 ### 0.2 
 * Update `SolaceMessagingInfo` to support TLS feature of Solace Messaging for PCF. Constructor changes are not backwards compatible. 
 
