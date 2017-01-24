@@ -53,15 +53,13 @@ public class SolaceMessagingServiceInfoTest {
 		List<String> mqttWssUris = Arrays.asList("wss://192.168.1.50:7023");
 		List<String> restUris = Arrays.asList("http://192.168.1.50:7018");
 		List<String> restTlsUris = Arrays.asList("https://192.168.1.50:7019");
-		List<String> managementHttpUris = Arrays.asList("http://192.168.1.50:8080/SEMP/v2");
-		List<String> managementHttpsUris = Arrays.asList("https://192.168.1.50:443/SEMP/v2");
+		List<String> managementHostnames = Arrays.asList("vmr-Medium-VMR-0");
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
 
 		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
 				smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
-				mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
-				managementUsername);
+				mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		// Check Top Level stuff
 		assertEquals(id, smi.getId());
@@ -92,8 +90,7 @@ public class SolaceMessagingServiceInfoTest {
 		assertThat(smi.getRestTlsUris(), is(restTlsUris));
 
 		// Check Management Interfaces
-		assertThat(smi.getManagementHttpUris(), is(managementHttpUris));
-		assertThat(smi.getManagementHttpsUris(), is(managementHttpsUris));
+		assertThat(smi.getManagementHostnames(), is(managementHostnames));
 		assertEquals(managementUsername, smi.getManagementUsername());
 		assertEquals(managementPassword, smi.getManagementPassword());
 

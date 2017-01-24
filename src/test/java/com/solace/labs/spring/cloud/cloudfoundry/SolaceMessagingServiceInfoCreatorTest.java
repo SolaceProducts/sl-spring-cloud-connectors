@@ -163,8 +163,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("mqttWssUris", Arrays.asList("wss://192.168.1.50:7023"));
 		exCred.put("restUris", Arrays.asList("http://192.168.1.50:7018"));
 		exCred.put("restTlsUris", Arrays.asList("https://192.168.1.50:7019"));
-		exCred.put("managementHttpUris", Arrays.asList("http://192.168.1.50:8080/SEMP/v2"));
-		exCred.put("managementHttpsUris", Arrays.asList("https://192.168.1.50:443/SEMP/v2"));
+		exCred.put("managementHostnames", Arrays.asList("vmr-Medium-VMR-0"));
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
 
@@ -206,8 +205,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertThat(smi.getRestTlsUris(), is(Arrays.asList("https://192.168.1.50:7019")));
 
 		// Check Management Interfaces
-		assertThat(smi.getManagementHttpUris(), is(Arrays.asList("http://192.168.1.50:8080/SEMP/v2")));
-		assertThat(smi.getManagementHttpsUris(), is(Arrays.asList("https://192.168.1.50:443/SEMP/v2")));
+		assertThat(smi.getManagementHostnames(), is(Arrays.asList("vmr-Medium-VMR-0")));
 		assertEquals("sample-mgmt-username", smi.getManagementUsername());
 		assertEquals("sample-mgmt-password", smi.getManagementPassword());
 	}
