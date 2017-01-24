@@ -51,8 +51,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private List<String> mqttTlsUris;
 	private List<String> mqttWsUris;
 	private List<String> mqttWssUris;
-	private List<String> managementHttpUris;
-	private List<String> managementHttpsUris;
+	private List<String> managementHostnames;
 	private String managementPassword;
 	private String managementUsername;
 	private String webMessagingTlsUri;
@@ -65,8 +64,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
 			String smfHost, String smfTlsHost, String smfZipHost, String webMessagingUri,String webMessagingTlsUri, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
-			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHttpUris,
-			List<String> managementHttpsUris, String managementPassword, String managementUsername) {
+			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHostnames,
+			String managementPassword, String managementUsername) {
 		super(id);
 		this.clientUsername = clientUsername;
 		this.clientPassword = clientPassword;
@@ -84,8 +83,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.mqttTlsUris = mqttTlsUris;
 		this.mqttWsUris = mqttWsUris;
 		this.mqttWssUris = mqttWssUris;
-		this.managementHttpUris = managementHttpUris;
-		this.managementHttpsUris = managementHttpsUris;
+		this.managementHostnames = managementHostnames;
 		this.managementPassword = managementPassword;
 		this.managementUsername = managementUsername;
 	}
@@ -221,19 +219,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
-	 * @return the managementHttpUris
+	 * @return the managementHostnames
 	 */
 	@ServiceProperty
-	public List<String> getManagementHttpUris() {
-		return managementHttpUris;
-	}
-
-	/**
-	 * @return the managementHttpsUris
-	 */
-	@ServiceProperty
-	public List<String> getManagementHttpsUris() {
-		return managementHttpsUris;
+	public List<String> getManagementHostnames() {
+		return managementHostnames;
 	}
 
 	/**
@@ -276,8 +266,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((clientUsername == null) ? 0 : clientUsername.hashCode());
 		result = prime * result + ((jmsJndiTlsUri == null) ? 0 : jmsJndiTlsUri.hashCode());
 		result = prime * result + ((jmsJndiUri == null) ? 0 : jmsJndiUri.hashCode());
-		result = prime * result + ((managementHttpUris == null) ? 0 : managementHttpUris.hashCode());
-		result = prime * result + ((managementHttpsUris == null) ? 0 : managementHttpsUris.hashCode());
+		result = prime * result + ((managementHostnames == null) ? 0 : managementHostnames.hashCode());
 		result = prime * result + ((managementPassword == null) ? 0 : managementPassword.hashCode());
 		result = prime * result + ((managementUsername == null) ? 0 : managementUsername.hashCode());
 		result = prime * result + ((mqttTlsUris == null) ? 0 : mqttTlsUris.hashCode());
@@ -334,15 +323,10 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 				return false;
 		} else if (!jmsJndiUri.equals(other.jmsJndiUri))
 			return false;
-		if (managementHttpUris == null) {
-			if (other.managementHttpUris != null)
+		if (managementHostnames == null) {
+			if (other.managementHostnames != null)
 				return false;
-		} else if (!managementHttpUris.equals(other.managementHttpUris))
-			return false;
-		if (managementHttpsUris == null) {
-			if (other.managementHttpsUris != null)
-				return false;
-		} else if (!managementHttpsUris.equals(other.managementHttpsUris))
+		} else if (!managementHostnames.equals(other.managementHostnames))
 			return false;
 		if (managementPassword == null) {
 			if (other.managementPassword != null)

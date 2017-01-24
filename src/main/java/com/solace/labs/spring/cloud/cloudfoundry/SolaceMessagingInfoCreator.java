@@ -57,8 +57,7 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		List<String> mqttTlsUris = null;
 		List<String> mqttWsUris = null;
 		List<String> mqttWssUris = null;
-		List<String> managementHttpUris = null;
-		List<String> managementHttpsUris = null;
+		List<String> managementHostnames = null;
 		String managementPassword = null;
 		String managementUsername = null;
 
@@ -130,19 +129,15 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 			case "mqttWssUris":
 				mqttWssUris = (List<String>) value;
 				break;
-			case "managementHttpUris":
-				managementHttpUris = (List<String>) value;
-				break;
-			case "managementHttpsUris":
-				managementHttpsUris = (List<String>) value;
+			case "managementHostnames":
+				managementHostnames = (List<String>) value;
 				break;
 			}
 		}
 
 		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
 				smfHost, smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
-				mqttTlsUris, mqttWsUris, mqttWssUris, managementHttpUris, managementHttpsUris, managementPassword,
-				managementUsername);
+				mqttTlsUris, mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		return solMessagingInfo;
 	}
