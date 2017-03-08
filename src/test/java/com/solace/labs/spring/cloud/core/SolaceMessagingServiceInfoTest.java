@@ -43,8 +43,8 @@ public class SolaceMessagingServiceInfoTest {
 		String smfHost = "tcp://192.168.1.50:7000";
 		String smfTlsHost = "tcps://192.168.1.50:7003";
 		String smfZipHost = "tcp://192.168.1.50:7001";
-		String webMessagingUri = "http://192.168.1.50:80";
-		String webMessagingTlsUri = "https://192.168.1.50:80";
+		List<String> webMessagingUris = Arrays.asList("http://192.168.1.50:80");
+		List<String> webMessagingTlsUris = Arrays.asList("https://192.168.1.50:80");
 		String jmsJndiUri = "smf://192.168.1.50:7000";
 		String jmsJndiTlsUri = "smfs://192.168.1.50:7003";
 		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
@@ -58,7 +58,7 @@ public class SolaceMessagingServiceInfoTest {
 		String managementPassword = "sample-mgmt-password";
 
 		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
-				smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
+				smfTlsHost, smfZipHost, webMessagingUris, webMessagingTlsUris, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		// Check Top Level stuff
@@ -72,8 +72,8 @@ public class SolaceMessagingServiceInfoTest {
 		assertEquals(smfTlsHost, smi.getSmfTlsHost());
 		assertEquals(smfZipHost, smi.getSmfZipHost());
 
-		// Check Web Messsaging
-		assertEquals(webMessagingUri, smi.getWebMessagingUri());
+		// Check Web Messaging
+		assertEquals(webMessagingUris, smi.getWebMessagingUris());
 
 		// Check JMS
 		assertEquals(jmsJndiUri, smi.getJmsJndiUri());

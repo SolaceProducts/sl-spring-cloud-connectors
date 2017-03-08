@@ -153,8 +153,8 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("smfHost", "tcp://192.168.1.50:7000");
 		exCred.put("smfTlsHost", "tcps://192.168.1.50:7003");
 		exCred.put("smfZipHost", "tcp://192.168.1.50:7001");
-		exCred.put("webMessagingUri", "http://192.168.1.50:80");
-		exCred.put("webMessagingTlsUri", "https://192.168.1.50:80");
+		exCred.put("webMessagingUris", Arrays.asList("http://192.168.1.50:80"));
+		exCred.put("webMessagingTlsUris", Arrays.asList("https://192.168.1.50:80"));
 		exCred.put("jmsJndiUri", "smf://192.168.1.50:7000");
 		exCred.put("jmsJndiTlsUri", "smfs://192.168.1.50:7003");
 		exCred.put("mqttUris", Arrays.asList("tcp://192.168.1.50:7020"));
@@ -191,8 +191,9 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
 		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipHost());
 
-		// Check Web Messsaging
-		assertEquals("http://192.168.1.50:80", smi.getWebMessagingUri());
+		// Check Web Messaging
+		assertThat(smi.getWebMessagingUris(), is(Arrays.asList("http://192.168.1.50:80")));
+		assertThat(smi.getWebMessagingTlsUris(), is(Arrays.asList("https://192.168.1.50:80")));
 
 		// Check JMS
 		assertThat(smi.getMqttUris(), is(Arrays.asList("tcp://192.168.1.50:7020")));
