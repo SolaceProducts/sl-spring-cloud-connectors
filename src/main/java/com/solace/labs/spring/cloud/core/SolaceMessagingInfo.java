@@ -42,7 +42,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String smfHost;
 	private String smfTlsHost;
 	private String smfZipHost;
-	private String webMessagingUri;
 	private String jmsJndiUri;
 	private String jmsJndiTlsUri;
 	private List<String> restUris;
@@ -54,7 +53,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private List<String> managementHostnames;
 	private String managementPassword;
 	private String managementUsername;
-	private String webMessagingTlsUri;
+	private List<String> webMessagingUris;
+	private List<String> webMessagingTlsUris;
 
 	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
@@ -62,10 +62,12 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 	
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
-			String smfHost, String smfTlsHost, String smfZipHost, String webMessagingUri,String webMessagingTlsUri, String jmsJndiUri, String jmsJndiTlsUri,
-			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
-			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHostnames,
-			String managementPassword, String managementUsername) {
+			String smfHost, String smfTlsHost, String smfZipHost,
+			List<String> webMessagingUris, List<String> webMessagingTlsUris,
+			String jmsJndiUri, String jmsJndiTlsUri,
+			List<String> restUris, List<String> restTlsUris, 
+			List<String> mqttUris, List<String> mqttTlsUris, List<String> mqttWsUris, List<String> mqttWssUris, 
+			List<String> managementHostnames, String managementPassword, String managementUsername) {
 		super(id);
 		this.clientUsername = clientUsername;
 		this.clientPassword = clientPassword;
@@ -73,8 +75,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.smfHost = smfHost;
 		this.smfTlsHost = smfTlsHost;
 		this.smfZipHost = smfZipHost;
-		this.webMessagingUri = webMessagingUri;
-		this.webMessagingTlsUri = webMessagingTlsUri;
+		this.webMessagingUris = webMessagingUris;
+		this.webMessagingTlsUris = webMessagingTlsUris;
 		this.jmsJndiUri = jmsJndiUri;
 		this.jmsJndiTlsUri = jmsJndiTlsUri;
 		this.restUris = restUris;
@@ -142,16 +144,16 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	 * @return the webMessagingUri
 	 */
 	@ServiceProperty
-	public String getWebMessagingUri() {
-		return webMessagingUri;
+	public List<String> getWebMessagingUris() {
+		return webMessagingUris;
 	}
 	
 	/**
 	 * @return the webMessagingTlsUri
 	 */
 	@ServiceProperty
-	public String getWebMessagingTlsUri() {
-		return webMessagingTlsUri;
+	public List<String> getWebMessagingTlsUris() {
+		return webMessagingTlsUris;
 	}
 
 	/**
@@ -279,8 +281,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((smfTlsHost == null) ? 0 : smfTlsHost.hashCode());
 		result = prime * result + ((smfHost == null) ? 0 : smfHost.hashCode());
 		result = prime * result + ((smfZipHost == null) ? 0 : smfZipHost.hashCode());
-		result = prime * result + ((webMessagingUri == null) ? 0 : webMessagingUri.hashCode());
-		result = prime * result + ((webMessagingTlsUri == null) ? 0 : webMessagingTlsUri.hashCode());
+		result = prime * result + ((webMessagingUris == null) ? 0 : webMessagingUris.hashCode());
+		result = prime * result + ((webMessagingTlsUris == null) ? 0 : webMessagingTlsUris.hashCode());
 		return result;
 	}
 
@@ -388,15 +390,15 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 				return false;
 		} else if (!smfZipHost.equals(other.smfZipHost))
 			return false;
-		if (webMessagingUri == null) {
-			if (other.webMessagingUri != null)
+		if (webMessagingUris == null) {
+			if (other.webMessagingUris != null)
 				return false;
-		} else if (!webMessagingUri.equals(other.webMessagingUri))
+		} else if (!webMessagingUris.equals(other.webMessagingUris))
 			return false;
-		if (webMessagingTlsUri == null) {
-			if (other.webMessagingTlsUri != null)
+		if (webMessagingTlsUris == null) {
+			if (other.webMessagingTlsUris != null)
 				return false;
-		} else if (!webMessagingTlsUri.equals(other.webMessagingTlsUri))
+		} else if (!webMessagingTlsUris.equals(other.webMessagingTlsUris))
 			return false;
 		return true;
 	}
