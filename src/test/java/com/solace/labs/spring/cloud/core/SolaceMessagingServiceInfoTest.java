@@ -40,13 +40,13 @@ public class SolaceMessagingServiceInfoTest {
 		String clientUsername = "sample-client-username";
 		String clientPassword = "sample-client-password";
 		String msgVpnName = "sample-msg-vpn";
-		String smfHost = "tcp://192.168.1.50:7000";
-		String smfTlsHost = "tcps://192.168.1.50:7003";
-		String smfZipHost = "tcp://192.168.1.50:7001";
+		List<String> smfHosts = Arrays.asList("tcp://192.168.1.50:7000");
+		List<String> smfTlsHosts = Arrays.asList("tcps://192.168.1.50:7003");
+		List<String> smfZipHosts = Arrays.asList("tcp://192.168.1.50:7001");
 		List<String> webMessagingUris = Arrays.asList("http://192.168.1.50:80");
 		List<String> webMessagingTlsUris = Arrays.asList("https://192.168.1.50:80");
-		String jmsJndiUri = "smf://192.168.1.50:7000";
-		String jmsJndiTlsUri = "smfs://192.168.1.50:7003";
+		List<String> jmsJndiUris = Arrays.asList("smf://192.168.1.50:7000");
+		List<String> jmsJndiTlsUris = Arrays.asList("smfs://192.168.1.50:7003");
 		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
 		List<String> mqttTlsUris = Arrays.asList("ssl://192.168.1.50:7021");
 		List<String> mqttWsUris = Arrays.asList("ws://192.168.1.50:7022");
@@ -57,8 +57,8 @@ public class SolaceMessagingServiceInfoTest {
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
 
-		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
-				smfTlsHost, smfZipHost, webMessagingUris, webMessagingTlsUris, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
+		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHosts,
+				smfTlsHosts, smfZipHosts, webMessagingUris, webMessagingTlsUris, jmsJndiUris, jmsJndiTlsUris, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		// Check Top Level stuff
@@ -68,16 +68,16 @@ public class SolaceMessagingServiceInfoTest {
 		assertEquals(msgVpnName, smi.getMsgVpnName());
 
 		// Check SMF
-		assertEquals(smfHost, smi.getSmfHost());
-		assertEquals(smfTlsHost, smi.getSmfTlsHost());
-		assertEquals(smfZipHost, smi.getSmfZipHost());
+		assertEquals(smfHosts, smi.getSmfHosts());
+		assertEquals(smfTlsHosts, smi.getSmfTlsHosts());
+		assertEquals(smfZipHosts, smi.getSmfZipHosts());
 
 		// Check Web Messaging
 		assertEquals(webMessagingUris, smi.getWebMessagingUris());
 
 		// Check JMS
-		assertEquals(jmsJndiUri, smi.getJmsJndiUri());
-		assertEquals(jmsJndiTlsUri, smi.getJmsJndiTlsUri());
+		assertEquals(jmsJndiUris, smi.getJmsJndiUris());
+		assertEquals(jmsJndiTlsUris, smi.getJmsJndiTlsUris());
 
 		// Check MQTT
 		assertThat(smi.getMqttUris(), is(mqttUris));
