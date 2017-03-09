@@ -44,13 +44,13 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		String clientUsername = null;
 		String clientPassword = null;
 		String msgVpnName = null;
-		String smfHost = null;
-		String smfTlsHost = null;
-		String smfZipHost = null;
-		String webMessagingUri = null;
-		String webMessagingTlsUri = null;
-		String jmsJndiUri = null;
-		String jmsJndiTlsUri = null;
+		List<String> smfHosts = null;
+		List<String> smfTlsHosts = null;
+		List<String> smfZipHosts = null;
+		List<String> webMessagingUris = null;
+		List<String> webMessagingTlsUris = null;
+		List<String> jmsJndiUris = null;
+		List<String> jmsJndiTlsUris = null;
 		List<String> restUris = null;
 		List<String> restTlsUris = null;
 		List<String> mqttUris = null;
@@ -84,26 +84,26 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 			case "msgVpnName":
 				msgVpnName = (String) value;
 				break;
-			case "smfHost":
-				smfHost = (String) value;
+			case "smfHosts":
+				smfHosts = (List<String>) value;
 				break;
-			case "smfTlsHost":
-				smfTlsHost = (String) value;
+			case "smfTlsHosts":
+				smfTlsHosts = (List<String>) value;
 				break;
-			case "smfZipHost":
-				smfZipHost = (String) value;
+			case "smfZipHosts":
+				smfZipHosts = (List<String>) value;
 				break;
-			case "webMessagingUri":
-				webMessagingUri = (String) value;
+			case "webMessagingUris":
+				webMessagingUris = (List<String>) value;
 				break;
-			case "webMessagingTlsUri":
-				webMessagingTlsUri = (String) value;
+			case "webMessagingTlsUris":
+				webMessagingTlsUris = (List<String>) value;
 				break;
-			case "jmsJndiUri":
-				jmsJndiUri = (String) value;
+			case "jmsJndiUris":
+				jmsJndiUris = (List<String>) value;
 				break;
-			case "jmsJndiTlsUri":
-				jmsJndiTlsUri = (String) value;
+			case "jmsJndiTlsUris":
+				jmsJndiTlsUris = (List<String>) value;
 				break;
 			case "managementUsername":
 				managementUsername = (String) value;
@@ -136,7 +136,7 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		}
 
 		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
-				smfHost, smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
+				smfHosts, smfTlsHosts, smfZipHosts, webMessagingUris, webMessagingTlsUris, jmsJndiUris, jmsJndiTlsUris, restUris, restTlsUris, mqttUris,
 				mqttTlsUris, mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		return solMessagingInfo;

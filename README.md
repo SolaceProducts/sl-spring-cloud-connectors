@@ -48,7 +48,7 @@ SolaceMessagingInfo solacemessaging = (SolaceMessagingInfo) cloud.getServiceInfo
 
 // Setting up the JCSMP Connection
 final JCSMPProperties props = new JCSMPProperties();
-props.setProperty(JCSMPProperties.HOST, solacemessaging.getSmfHost());
+props.setProperty(JCSMPProperties.HOST, String.join(",", solacemessaging.getSmfHosts()));
 props.setProperty(JCSMPProperties.VPN_NAME, solacemessaging.getMsgVpnName());
 props.setProperty(JCSMPProperties.USERNAME, solacemessaging.getClientUsername());
 props.setProperty(JCSMPProperties.PASSWORD, solacemessaging.getClientPassword());
