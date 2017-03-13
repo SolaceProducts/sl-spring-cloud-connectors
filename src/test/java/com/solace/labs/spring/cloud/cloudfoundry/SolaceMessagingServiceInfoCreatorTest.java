@@ -92,7 +92,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 
 		@SuppressWarnings("unchecked")
 		Map<String, Object> exCred = (Map<String, Object>) exVcapServices.get("credentials");
-		exCred.remove("smfHost");
+		exCred.remove("smfHosts");
 		
 		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
 
@@ -103,8 +103,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		
 		// Validate smf is null. Others are not
 		assertNull(smi.getSmfHost());
-		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
-		
+		assertEquals("tcps://192.168.1.50:7003,tcps://192.168.1.51:7003", smi.getSmfTlsHost());
 	}
 	
 	@Test 
@@ -150,17 +149,17 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("clientUsername", "sample-client-username");
 		exCred.put("clientPassword", "sample-client-password");
 		exCred.put("msgVpnName", "sample-msg-vpn");
-		exCred.put("smfHost", "tcp://192.168.1.50:7000");
-		exCred.put("smfTlsHost", "tcps://192.168.1.50:7003");
-		exCred.put("smfZipHost", "tcp://192.168.1.50:7001");
-		exCred.put("webMessagingUri", "http://192.168.1.50:80");
-		exCred.put("webMessagingTlsUri", "https://192.168.1.50:80");
-		exCred.put("jmsJndiUri", "smf://192.168.1.50:7000");
-		exCred.put("jmsJndiTlsUri", "smfs://192.168.1.50:7003");
+		exCred.put("smfHosts", Arrays.asList("tcp://192.168.1.50:7000"));
+		exCred.put("smfTlsHosts", Arrays.asList("tcps://192.168.1.50:7003", "tcps://192.168.1.51:7003"));
+		exCred.put("smfZipHosts", Arrays.asList("tcp://192.168.1.50:7001"));
+		exCred.put("webMessagingUris", Arrays.asList("http://192.168.1.50:80"));
+		exCred.put("webMessagingTlsUris", Arrays.asList("https://192.168.1.50:80"));
+		exCred.put("jmsJndiUris", Arrays.asList("smf://192.168.1.50:7000"));
+		exCred.put("jmsJndiTlsUris", Arrays.asList("smfs://192.168.1.50:7003", "smfs://192.168.1.51:7003"));
 		exCred.put("mqttUris", Arrays.asList("tcp://192.168.1.50:7020"));
-		exCred.put("mqttTlsUris", Arrays.asList("ssl://192.168.1.50:7021"));
+		exCred.put("mqttTlsUris", Arrays.asList("ssl://192.168.1.50:7021", "ssl://192.168.1.51:7021"));
 		exCred.put("mqttWsUris", Arrays.asList("ws://192.168.1.50:7022"));
-		exCred.put("mqttWssUris", Arrays.asList("wss://192.168.1.50:7023"));
+		exCred.put("mqttWssUris", Arrays.asList("wss://192.168.1.50:7023", "wss://192.168.1.51:7023"));
 		exCred.put("restUris", Arrays.asList("http://192.168.1.50:7018"));
 		exCred.put("restTlsUris", Arrays.asList("https://192.168.1.50:7019"));
 		exCred.put("managementHostnames", Arrays.asList("vmr-Medium-VMR-0"));
@@ -188,17 +187,18 @@ public class SolaceMessagingServiceInfoCreatorTest {
 
 		// Check SMF
 		assertEquals("tcp://192.168.1.50:7000", smi.getSmfHost());
-		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
+		assertEquals("tcps://192.168.1.50:7003,tcps://192.168.1.51:7003", smi.getSmfTlsHost());
 		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipHost());
 
-		// Check Web Messsaging
-		assertEquals("http://192.168.1.50:80", smi.getWebMessagingUri());
-
 		// Check JMS
+		assertEquals("smf://192.168.1.50:7000", smi.getJmsJndiUri());
+		assertEquals("smfs://192.168.1.50:7003,smfs://192.168.1.51:7003", smi.getJmsJndiTlsUri());
+
+		// Check MQTT
 		assertThat(smi.getMqttUris(), is(Arrays.asList("tcp://192.168.1.50:7020")));
-		assertThat(smi.getMqttTlsUris(), is(Arrays.asList("ssl://192.168.1.50:7021")));
+		assertThat(smi.getMqttTlsUris(), is(Arrays.asList("ssl://192.168.1.50:7021", "ssl://192.168.1.51:7021")));
 		assertThat(smi.getMqttWsUris(), is(Arrays.asList("ws://192.168.1.50:7022")));
-		assertThat(smi.getMqttWssUris(), is(Arrays.asList("wss://192.168.1.50:7023")));
+		assertThat(smi.getMqttWssUris(), is(Arrays.asList("wss://192.168.1.50:7023", "wss://192.168.1.51:7023")));
 
 		// Check REST
 		assertThat(smi.getRestUris(), is(Arrays.asList("http://192.168.1.50:7018")));

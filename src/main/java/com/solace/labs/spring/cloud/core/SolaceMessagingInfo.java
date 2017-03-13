@@ -31,7 +31,7 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  * 
  * For more details see the GitHub project:
  *    - https://github.com/SolaceLabs/sl-solace-messaging-service-info
- * 
+ *    
  */
 @ServiceLabel("solacemessaging")
 public class SolaceMessagingInfo extends BaseServiceInfo {
@@ -42,7 +42,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String smfHost;
 	private String smfTlsHost;
 	private String smfZipHost;
-	private String webMessagingUri;
 	private String jmsJndiUri;
 	private String jmsJndiTlsUri;
 	private List<String> restUris;
@@ -54,7 +53,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private List<String> managementHostnames;
 	private String managementPassword;
 	private String managementUsername;
-	private String webMessagingTlsUri;
+	
 
 	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
@@ -62,7 +61,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 	
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
-			String smfHost, String smfTlsHost, String smfZipHost, String webMessagingUri,String webMessagingTlsUri, String jmsJndiUri, String jmsJndiTlsUri,
+			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
 			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHostnames,
 			String managementPassword, String managementUsername) {
@@ -73,8 +72,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.smfHost = smfHost;
 		this.smfTlsHost = smfTlsHost;
 		this.smfZipHost = smfZipHost;
-		this.webMessagingUri = webMessagingUri;
-		this.webMessagingTlsUri = webMessagingTlsUri;
 		this.jmsJndiUri = jmsJndiUri;
 		this.jmsJndiTlsUri = jmsJndiTlsUri;
 		this.restUris = restUris;
@@ -136,22 +133,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	@ServiceProperty
 	public String getSmfZipHost() {
 		return smfZipHost;
-	}
-
-	/**
-	 * @return the webMessagingUri
-	 */
-	@ServiceProperty
-	public String getWebMessagingUri() {
-		return webMessagingUri;
-	}
-	
-	/**
-	 * @return the webMessagingTlsUri
-	 */
-	@ServiceProperty
-	public String getWebMessagingTlsUri() {
-		return webMessagingTlsUri;
 	}
 
 	/**
@@ -218,6 +199,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		return mqttWssUris;
 	}
 
+
 	/**
 	 * @return the managementHostnames
 	 */
@@ -279,8 +261,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((smfTlsHost == null) ? 0 : smfTlsHost.hashCode());
 		result = prime * result + ((smfHost == null) ? 0 : smfHost.hashCode());
 		result = prime * result + ((smfZipHost == null) ? 0 : smfZipHost.hashCode());
-		result = prime * result + ((webMessagingUri == null) ? 0 : webMessagingUri.hashCode());
-		result = prime * result + ((webMessagingTlsUri == null) ? 0 : webMessagingTlsUri.hashCode());
 		return result;
 	}
 
@@ -387,16 +367,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.smfZipHost != null)
 				return false;
 		} else if (!smfZipHost.equals(other.smfZipHost))
-			return false;
-		if (webMessagingUri == null) {
-			if (other.webMessagingUri != null)
-				return false;
-		} else if (!webMessagingUri.equals(other.webMessagingUri))
-			return false;
-		if (webMessagingTlsUri == null) {
-			if (other.webMessagingTlsUri != null)
-				return false;
-		} else if (!webMessagingTlsUri.equals(other.webMessagingTlsUri))
 			return false;
 		return true;
 	}

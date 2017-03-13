@@ -30,6 +30,12 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 
 	// This creator will accept and parse any credentials that have the matching tag or label. 
 	// Therefore the default accept method is sufficient and doesn't need further specification.
+	
+	
+	// Some URI properties are represented in VCAP_SERVICES as JSON arrays, but 
+	// the JCSMP Java client library expects them as comma-separated strings.
+	// Therefore we do that transformation.
+
 	static private String solaceMessagingTag = "solace-messaging";
 
 	public SolaceMessagingInfoCreator() {
@@ -44,13 +50,11 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 		String clientUsername = null;
 		String clientPassword = null;
 		String msgVpnName = null;
-		String smfHost = null;
-		String smfTlsHost = null;
-		String smfZipHost = null;
-		String webMessagingUri = null;
-		String webMessagingTlsUri = null;
-		String jmsJndiUri = null;
-		String jmsJndiTlsUri = null;
+		List<String> smfHosts = null;
+		List<String> smfTlsHosts = null;
+		List<String> smfZipHosts = null;
+		List<String> jmsJndiUris = null;
+		List<String> jmsJndiTlsUris = null;
 		List<String> restUris = null;
 		List<String> restTlsUris = null;
 		List<String> mqttUris = null;
@@ -84,26 +88,20 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 			case "msgVpnName":
 				msgVpnName = (String) value;
 				break;
-			case "smfHost":
-				smfHost = (String) value;
+			case "smfHosts":
+				smfHosts = (List<String>) value;
 				break;
-			case "smfTlsHost":
-				smfTlsHost = (String) value;
+			case "smfTlsHosts":
+				smfTlsHosts = (List<String>) value;
 				break;
-			case "smfZipHost":
-				smfZipHost = (String) value;
+			case "smfZipHosts":
+				smfZipHosts = (List<String>) value;
 				break;
-			case "webMessagingUri":
-				webMessagingUri = (String) value;
+			case "jmsJndiUris":
+				jmsJndiUris = (List<String>) value;
 				break;
-			case "webMessagingTlsUri":
-				webMessagingTlsUri = (String) value;
-				break;
-			case "jmsJndiUri":
-				jmsJndiUri = (String) value;
-				break;
-			case "jmsJndiTlsUri":
-				jmsJndiTlsUri = (String) value;
+			case "jmsJndiTlsUris":
+				jmsJndiTlsUris = (List<String>) value;
 				break;
 			case "managementUsername":
 				managementUsername = (String) value;
@@ -134,9 +132,24 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 				break;
 			}
 		}
+		
+		
+		// Convert Lists to comma-separated strings on these properties, to be compatible with  the JCSMP Java client library.
+		String smfHost = null;
+		String smfTlsHost = null;
+		String smfZipHost = null;
+		String jmsJndiUri = null;
+		String jmsJndiTlsUri = null;
+				
+
+		if (smfHosts != null)       smfHost =       String.join(",", smfHosts);
+		if (smfTlsHosts != null)    smfTlsHost =    String.join(",", smfTlsHosts);
+		if (smfZipHosts != null)    smfZipHost =    String.join(",", smfZipHosts);
+		if (jmsJndiUris != null)    jmsJndiUri =    String.join(",", jmsJndiUris);
+		if (jmsJndiTlsUris != null) jmsJndiTlsUri = String.join(",", jmsJndiTlsUris);
 
 		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
-				smfHost, smfTlsHost, smfZipHost, webMessagingUri, webMessagingTlsUri, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
+				smfHost, smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
 				mqttTlsUris, mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		return solMessagingInfo;
