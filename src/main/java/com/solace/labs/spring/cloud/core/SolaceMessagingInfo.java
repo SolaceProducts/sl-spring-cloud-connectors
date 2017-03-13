@@ -31,7 +31,7 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  * 
  * For more details see the GitHub project:
  *    - https://github.com/SolaceLabs/sl-solace-messaging-service-info
- * 
+ *    
  */
 @ServiceLabel("solacemessaging")
 public class SolaceMessagingInfo extends BaseServiceInfo {
@@ -39,6 +39,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String clientUsername;
 	private String clientPassword;
 	private String msgVpnName;
+	private String smfHost;
+	private String smfTlsHost;
+	private String smfZipHost;
+	private String jmsJndiUri;
+	private String jmsJndiTlsUri;
 	private List<String> restUris;
 	private List<String> restTlsUris;
 	private List<String> mqttUris;
@@ -49,14 +54,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String managementPassword;
 	private String managementUsername;
 	
-	// These properties are converted from arrays to comma separated strings
-	// for the convenience of the Solace APIs that expect them in that form.
-	
-	private String smfHost;
-	private String smfTlsHost;
-	private String smfZipHost;
-	private String jmsJndiUri;
-	private String jmsJndiTlsUri;
 
 	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
@@ -64,15 +61,19 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 	
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
-			List<String> smfHosts, List<String> smfTlsHosts, List<String> smfZipHosts,
-			List<String> jmsJndiUris, List<String> jmsJndiTlsUris,
-			List<String> restUris, List<String> restTlsUris, 
-			List<String> mqttUris, List<String> mqttTlsUris, List<String> mqttWsUris, List<String> mqttWssUris, 
-			List<String> managementHostnames, String managementPassword, String managementUsername) {
+			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
+			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
+			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHostnames,
+			String managementPassword, String managementUsername) {
 		super(id);
 		this.clientUsername = clientUsername;
 		this.clientPassword = clientPassword;
 		this.msgVpnName = msgVpnName;
+		this.smfHost = smfHost;
+		this.smfTlsHost = smfTlsHost;
+		this.smfZipHost = smfZipHost;
+		this.jmsJndiUri = jmsJndiUri;
+		this.jmsJndiTlsUri = jmsJndiTlsUri;
 		this.restUris = restUris;
 		this.restTlsUris = restTlsUris;
 		this.mqttUris = mqttUris;
@@ -82,12 +83,6 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.managementHostnames = managementHostnames;
 		this.managementPassword = managementPassword;
 		this.managementUsername = managementUsername;
-		
-		if (smfHosts != null)       smfHost =       String.join(",", smfHosts);
-		if (smfTlsHosts != null)    smfTlsHost =    String.join(",", smfTlsHosts);
-		if (smfZipHosts != null)    smfZipHost =    String.join(",", smfZipHosts);
-		if (jmsJndiUris != null)    jmsJndiUri =    String.join(",", jmsJndiUris);
-		if (jmsJndiTlsUris != null) jmsJndiTlsUri = String.join(",", jmsJndiTlsUris);
 	}
 
 	

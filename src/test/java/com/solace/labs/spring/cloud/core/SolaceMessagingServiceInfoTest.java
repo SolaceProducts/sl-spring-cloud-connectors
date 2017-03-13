@@ -40,11 +40,11 @@ public class SolaceMessagingServiceInfoTest {
 		String clientUsername = "sample-client-username";
 		String clientPassword = "sample-client-password";
 		String msgVpnName = "sample-msg-vpn";
-		List<String> smfHosts = Arrays.asList("tcp://192.168.1.50:7000");
-		List<String> smfTlsHosts = Arrays.asList("tcps://192.168.1.50:7003", "tcps://192.168.1.51:7003");
-		List<String> smfZipHosts = Arrays.asList("tcp://192.168.1.50:7001");
-		List<String> jmsJndiUris = Arrays.asList("smf://192.168.1.50:7000");
-		List<String> jmsJndiTlsUris = Arrays.asList("smfs://192.168.1.50:7003", "smfs://192.168.1.51:7003");
+		String smfHost = "tcp://192.168.1.50:7000";
+		String smfTlsHost = "tcps://192.168.1.50:7003";
+		String smfZipHost = "tcp://192.168.1.50:7001";
+		String jmsJndiUri = "smf://192.168.1.50:7000";
+		String jmsJndiTlsUri = "smfs://192.168.1.50:7003";
 		List<String> mqttUris = Arrays.asList("tcp://192.168.1.50:7020");
 		List<String> mqttTlsUris = Arrays.asList("ssl://192.168.1.50:7021", "ssl://192.168.1.51:7021");
 		List<String> mqttWsUris = Arrays.asList("ws://192.168.1.50:7022");
@@ -55,8 +55,8 @@ public class SolaceMessagingServiceInfoTest {
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
 
-		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHosts,
-				smfTlsHosts, smfZipHosts, jmsJndiUris, jmsJndiTlsUris, restUris, restTlsUris, mqttUris, mqttTlsUris,
+		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
+				smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		// Check Top Level stuff
@@ -67,12 +67,12 @@ public class SolaceMessagingServiceInfoTest {
 
 		// Check SMF
 		assertEquals("tcp://192.168.1.50:7000", smi.getSmfHost());
-		assertEquals("tcps://192.168.1.50:7003,tcps://192.168.1.51:7003", smi.getSmfTlsHost());
+		assertEquals("tcps://192.168.1.50:7003", smi.getSmfTlsHost());
 		assertEquals("tcp://192.168.1.50:7001", smi.getSmfZipHost());
 
 		// Check JMS
 		assertEquals("smf://192.168.1.50:7000", smi.getJmsJndiUri());
-		assertEquals("smfs://192.168.1.50:7003,smfs://192.168.1.51:7003", smi.getJmsJndiTlsUri());
+		assertEquals("smfs://192.168.1.50:7003", smi.getJmsJndiTlsUri());
 
 		// Check MQTT
 		assertThat(smi.getMqttUris(), is(Arrays.asList("tcp://192.168.1.50:7020")));

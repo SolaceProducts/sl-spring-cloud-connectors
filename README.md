@@ -61,19 +61,6 @@ session.connect();
 
 TODO: Add details.
 
-## A Note about Transforming VCAP_SERVICES
-
-The VCAP_SERVICES environment variable contains JSON arrays for many of the hostname properties.
-This is because when used in a High Availability environment, applications are provided with 
-two hostnames or IP addresses - one for the primary router and one for the backup.
-
-The JCSMP Java client library automatically takes care of switching to the backup router if the primary router becomes unavailable. It expects the HOST property to be a comma-separated list of hostnames.
-
-This cloud connector takes care of this by transforming the VCAP_SERVICES property 'smfHosts', which is a JSON array, into a property in the SolaceMessagingInfo class called 'smfHost', which is a string containing the comma-separated list of hostnames.
-
-This connector performs the same transformation on the properties smfTlsHosts, smfZipHosts, jmsJndiUris and jmsJndiTlsUris.
-
-
 ## Using it in your Application
 
 The releases from this project are hosted in [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.solace.labs.cloud.cloudfoundry%22%20AND%20a%3A%22solace-labs-spring-cloud-connector%22)

@@ -30,6 +30,12 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 
 	// This creator will accept and parse any credentials that have the matching tag or label. 
 	// Therefore the default accept method is sufficient and doesn't need further specification.
+	
+	
+	// Some URI properties are represented in VCAP_SERVICES as JSON arrays, but 
+	// the JCSMP Java client library expects them as comma-separated strings.
+	// Therefore we do that transformation.
+
 	static private String solaceMessagingTag = "solace-messaging";
 
 	public SolaceMessagingInfoCreator() {
@@ -126,9 +132,24 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 				break;
 			}
 		}
+		
+		
+		// Convert Lists to comma-separated strings on these properties, to be compatible with  the JCSMP Java client library.
+		String smfHost = null;
+		String smfTlsHost = null;
+		String smfZipHost = null;
+		String jmsJndiUri = null;
+		String jmsJndiTlsUri = null;
+				
+
+		if (smfHosts != null)       smfHost =       String.join(",", smfHosts);
+		if (smfTlsHosts != null)    smfTlsHost =    String.join(",", smfTlsHosts);
+		if (smfZipHosts != null)    smfZipHost =    String.join(",", smfZipHosts);
+		if (jmsJndiUris != null)    jmsJndiUri =    String.join(",", jmsJndiUris);
+		if (jmsJndiTlsUris != null) jmsJndiTlsUri = String.join(",", jmsJndiTlsUris);
 
 		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
-				smfHosts, smfTlsHosts, smfZipHosts, jmsJndiUris, jmsJndiTlsUris, restUris, restTlsUris, mqttUris,
+				smfHost, smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
 				mqttTlsUris, mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
 
 		return solMessagingInfo;
