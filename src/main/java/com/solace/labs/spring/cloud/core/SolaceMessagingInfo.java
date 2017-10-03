@@ -46,6 +46,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String jmsJndiTlsUri;
 	private List<String> restUris;
 	private List<String> restTlsUris;
+	private List<String> amqpUris;
+	private List<String> amqpTlsUris;
 	private List<String> mqttUris;
 	private List<String> mqttTlsUris;
 	private List<String> mqttWsUris;
@@ -63,7 +65,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
 			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
-			List<String> mqttWsUris, List<String> mqttWssUris, List<String> managementHostnames,
+			List<String> mqttWsUris, List<String> mqttWssUris, List<String> amqpUris, List<String> amqpTlsUris, List<String> managementHostnames,
 			String managementPassword, String managementUsername) {
 		super(id);
 		this.clientUsername = clientUsername;
@@ -80,6 +82,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.mqttTlsUris = mqttTlsUris;
 		this.mqttWsUris = mqttWsUris;
 		this.mqttWssUris = mqttWssUris;
+		this.amqpUris = amqpUris;
+		this.amqpTlsUris = amqpTlsUris;
 		this.managementHostnames = managementHostnames;
 		this.managementPassword = managementPassword;
 		this.managementUsername = managementUsername;
@@ -168,6 +172,22 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	}
 
 	/**
+	 * @return the amqpUris
+	 */
+	@ServiceProperty
+	public List<String> getAmqpUris() {
+		return amqpUris;
+	}
+
+	/**
+	 * @return the amqpTlsUris
+	 */
+	@ServiceProperty
+	public List<String> getAmqpTlsUris() {
+		return amqpTlsUris;
+	}
+
+	/**
 	 * @return the mqttUris
 	 */
 	@ServiceProperty
@@ -244,6 +264,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((amqpTlsUris == null) ? 0 : amqpTlsUris.hashCode());
+		result = prime * result + ((amqpUris == null) ? 0 : amqpUris.hashCode());
 		result = prime * result + ((clientPassword == null) ? 0 : clientPassword.hashCode());
 		result = prime * result + ((clientUsername == null) ? 0 : clientUsername.hashCode());
 		result = prime * result + ((jmsJndiTlsUri == null) ? 0 : jmsJndiTlsUri.hashCode());
@@ -282,6 +304,16 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (amqpTlsUris == null) {
+			if (other.amqpTlsUris != null)
+				return false;
+		} else if (!amqpTlsUris.equals(other.amqpTlsUris))
+			return false;
+		if (amqpUris == null) {
+			if (other.amqpUris != null)
+				return false;
+		} else if (!amqpUris.equals(other.amqpUris))
 			return false;
 		if (clientPassword == null) {
 			if (other.clientPassword != null)
