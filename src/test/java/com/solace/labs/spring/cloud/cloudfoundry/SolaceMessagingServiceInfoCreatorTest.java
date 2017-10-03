@@ -208,8 +208,8 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertThat(smi.getRestTlsUris(), is(Arrays.asList("https://192.168.1.50:7019")));
 
 		// Check AMQP
-		assertThat(smi.getAmqpUris(), is(Arrays.asList("http://192.168.1.50:7016")));
-		assertThat(smi.getAmqpTlsUris(), is(Arrays.asList("https://192.168.1.50:7017")));
+		assertThat(smi.getAmqpUris(), is(Arrays.asList("amqp://192.168.1.50:7016")));
+		assertThat(smi.getAmqpTlsUris(), is(Arrays.asList("amqps://192.168.1.50:7017")));
 
 		// Check Management Interfaces
 		assertThat(smi.getManagementHostnames(), is(Arrays.asList("vmr-Medium-VMR-0")));
