@@ -18,6 +18,8 @@
  */
 package com.solace.labs.spring.cloud.core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -401,6 +403,14 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		} else if (!smfZipHost.equals(other.smfZipHost))
 			return false;
 		return true;
+	}
+
+	public boolean isHA(){
+		Boolean bool = false;
+		if (smfHost != null) {
+			bool = smfHost.contains(",");
+		}
+		return bool;
 	}
 
 }
