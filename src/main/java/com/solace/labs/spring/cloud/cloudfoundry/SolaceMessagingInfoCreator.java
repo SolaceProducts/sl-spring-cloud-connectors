@@ -66,6 +66,7 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
         List<String> managementHostnames = null;
         String managementPassword = null;
         String managementUsername = null;
+        String activeManagementHostname = null;
 
         Map<String, Object> credentials = getCredentials(serviceData);
 
@@ -110,6 +111,9 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
                     break;
                 case "managementPassword":
                     managementPassword = (String) value;
+                    break;
+                case "activeManagementHostname":
+                    activeManagementHostname = (String) value;
                     break;
                 case "restUris":
                     restUris = (List<String>) value;
@@ -159,7 +163,7 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 
         SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
                 smfHost, smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
-                mqttTlsUris, mqttWsUris, mqttWssUris, amqpUris, amqpTlsUris, managementHostnames, managementPassword, managementUsername);
+                mqttTlsUris, mqttWsUris, mqttWssUris, amqpUris, amqpTlsUris, managementHostnames, managementPassword, managementUsername, activeManagementHostname);
 
         return solMessagingInfo;
     }

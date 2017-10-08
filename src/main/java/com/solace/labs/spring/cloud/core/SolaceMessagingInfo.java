@@ -57,6 +57,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private List<String> managementHostnames;
 	private String managementPassword;
 	private String managementUsername;
+	private String activeManagementHostname;
 	
 
 	// Default constructor to enable bean unit testing.
@@ -68,7 +69,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
 			List<String> mqttWsUris, List<String> mqttWssUris, List<String> amqpUris, List<String> amqpTlsUris, List<String> managementHostnames,
-			String managementPassword, String managementUsername) {
+			String managementPassword, String managementUsername, String activeManagementHostname) {
 		super(id);
 		this.clientUsername = clientUsername;
 		this.clientPassword = clientPassword;
@@ -89,6 +90,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.managementHostnames = managementHostnames;
 		this.managementPassword = managementPassword;
 		this.managementUsername = managementUsername;
+		this.activeManagementHostname = activeManagementHostname;
 	}
 
 	
@@ -246,6 +248,14 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		return managementUsername;
 	}
 
+    /**
+     * @return the activeManagementHostname
+     */
+    @ServiceProperty
+    public String getActiveManagementHostname() {
+        return activeManagementHostname;
+    }
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -275,6 +285,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((managementHostnames == null) ? 0 : managementHostnames.hashCode());
 		result = prime * result + ((managementPassword == null) ? 0 : managementPassword.hashCode());
 		result = prime * result + ((managementUsername == null) ? 0 : managementUsername.hashCode());
+        result = prime * result + ((activeManagementHostname == null) ? 0 : activeManagementHostname.hashCode());
 		result = prime * result + ((mqttTlsUris == null) ? 0 : mqttTlsUris.hashCode());
 		result = prime * result + ((mqttUris == null) ? 0 : mqttUris.hashCode());
 		result = prime * result + ((mqttWsUris == null) ? 0 : mqttWsUris.hashCode());
@@ -352,6 +363,11 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 				return false;
 		} else if (!managementUsername.equals(other.managementUsername))
 			return false;
+        if (activeManagementHostname == null) {
+            if (other.activeManagementHostname != null)
+                return false;
+        } else if (!activeManagementHostname.equals(other.activeManagementHostname))
+            return false;
 		if (mqttTlsUris == null) {
 			if (other.mqttTlsUris != null)
 				return false;

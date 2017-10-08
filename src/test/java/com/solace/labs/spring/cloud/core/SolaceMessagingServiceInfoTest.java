@@ -56,11 +56,12 @@ public class SolaceMessagingServiceInfoTest {
 		List<String> managementHostnames = Arrays.asList("vmr-Medium-VMR-0");
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
+		String activeManagementHostname = "vmr-medium-web";
 
 		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
 				smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, amqpUris, amqpTlsUris, managementHostnames, managementPassword,
-				managementUsername);
+				managementUsername, activeManagementHostname);
 
 		// Check Top Level stuff
 		assertEquals(id, smi.getId());

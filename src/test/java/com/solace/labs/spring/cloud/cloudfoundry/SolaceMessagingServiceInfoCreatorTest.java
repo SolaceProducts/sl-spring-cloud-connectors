@@ -168,6 +168,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("managementHostnames", Arrays.asList("vmr-Medium-VMR-0"));
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
+		exCred.put("activeManagementHostname", "vmr-medium-web");
 
 		exVcapServices.put("credentials", exCred);
 		exVcapServices.put("label", "solace-messaging");
@@ -215,5 +216,6 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertThat(smi.getManagementHostnames(), is(Arrays.asList("vmr-Medium-VMR-0")));
 		assertEquals("sample-mgmt-username", smi.getManagementUsername());
 		assertEquals("sample-mgmt-password", smi.getManagementPassword());
+		assertEquals("vmr-medium-web", smi.getActiveManagementHostname());
 	}
 }
