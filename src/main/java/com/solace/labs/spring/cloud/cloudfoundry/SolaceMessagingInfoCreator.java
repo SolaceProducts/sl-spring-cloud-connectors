@@ -28,130 +28,143 @@ import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
 
 public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<SolaceMessagingInfo> {
 
-	// This creator will accept and parse any credentials that have the matching tag or label. 
-	// Therefore the default accept method is sufficient and doesn't need further specification.
-	
-	
-	// Some URI properties are represented in VCAP_SERVICES as JSON arrays, but 
-	// the JCSMP Java client library expects them as comma-separated strings.
-	// Therefore we do that transformation.
+    // This creator will accept and parse any credentials that have the matching tag or label.
+    // Therefore the default accept method is sufficient and doesn't need further specification.
 
-	static private String solaceMessagingTag = "solace-messaging";
 
-	public SolaceMessagingInfoCreator() {
-		super(new Tags(solaceMessagingTag));
-	}
+    // Some URI properties are represented in VCAP_SERVICES as JSON arrays, but
+    // the JCSMP Java client library expects them as comma-separated strings.
+    // Therefore we do that transformation.
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public SolaceMessagingInfo createServiceInfo(Map<String, Object> serviceData) {
-		String id = getId(serviceData);
+    static private String solaceMessagingTag = "solace-messaging";
 
-		String clientUsername = null;
-		String clientPassword = null;
-		String msgVpnName = null;
-		List<String> smfHosts = null;
-		List<String> smfTlsHosts = null;
-		List<String> smfZipHosts = null;
-		List<String> jmsJndiUris = null;
-		List<String> jmsJndiTlsUris = null;
-		List<String> restUris = null;
-		List<String> restTlsUris = null;
-		List<String> mqttUris = null;
-		List<String> mqttTlsUris = null;
-		List<String> mqttWsUris = null;
-		List<String> mqttWssUris = null;
-		List<String> managementHostnames = null;
-		String managementPassword = null;
-		String managementUsername = null;
+    public SolaceMessagingInfoCreator() {
+        super(new Tags(solaceMessagingTag));
+    }
 
-		Map<String, Object> credentials = getCredentials(serviceData);
+    @SuppressWarnings("unchecked")
+    @Override
+    public SolaceMessagingInfo createServiceInfo(Map<String, Object> serviceData) {
+        String id = getId(serviceData);
 
-		if (credentials == null) {
-			throw new IllegalArgumentException("Received null credentials during object creation");
-		}
+        String clientUsername = null;
+        String clientPassword = null;
+        String msgVpnName = null;
+        List<String> smfHosts = null;
+        List<String> smfTlsHosts = null;
+        List<String> smfZipHosts = null;
+        List<String> jmsJndiUris = null;
+        List<String> jmsJndiTlsUris = null;
+        List<String> restUris = null;
+        List<String> restTlsUris = null;
+        List<String> mqttUris = null;
+        List<String> mqttTlsUris = null;
+        List<String> amqpUris = null;
+        List<String> amqpTlsUris = null;
+        List<String> mqttWsUris = null;
+        List<String> mqttWssUris = null;
+        List<String> managementHostnames = null;
+        String managementPassword = null;
+        String managementUsername = null;
+        String activeManagementHostname = null;
 
-		// Populate this the quick and dirty way for now. Can improve later as
-		// we harden. As a start, we'll be tolerant of missing attributes and
-		// just leave fields set to null.
-		for (Map.Entry<String, Object> entry : credentials.entrySet()) {
-			String key = entry.getKey();
-			Object value = entry.getValue();
+        Map<String, Object> credentials = getCredentials(serviceData);
 
-			switch (key) {
-			case "clientUsername":
-				clientUsername = (String) value;
-				break;
-			case "clientPassword":
-				clientPassword = (String) value;
-				break;
-			case "msgVpnName":
-				msgVpnName = (String) value;
-				break;
-			case "smfHosts":
-				smfHosts = (List<String>) value;
-				break;
-			case "smfTlsHosts":
-				smfTlsHosts = (List<String>) value;
-				break;
-			case "smfZipHosts":
-				smfZipHosts = (List<String>) value;
-				break;
-			case "jmsJndiUris":
-				jmsJndiUris = (List<String>) value;
-				break;
-			case "jmsJndiTlsUris":
-				jmsJndiTlsUris = (List<String>) value;
-				break;
-			case "managementUsername":
-				managementUsername = (String) value;
-				break;
-			case "managementPassword":
-				managementPassword = (String) value;
-				break;
-			case "restUris":
-				restUris = (List<String>) value;
-				break;
-			case "restTlsUris":
-				restTlsUris = (List<String>) value;
-				break;
-			case "mqttUris":
-				mqttUris = (List<String>) value;
-				break;
-			case "mqttTlsUris":
-				mqttTlsUris = (List<String>) value;
-				break;
-			case "mqttWsUris":
-				mqttWsUris = (List<String>) value;
-				break;
-			case "mqttWssUris":
-				mqttWssUris = (List<String>) value;
-				break;
-			case "managementHostnames":
-				managementHostnames = (List<String>) value;
-				break;
-			}
-		}
-		
-		
-		// Convert Lists to comma-separated strings on these properties, to be compatible with  the JCSMP Java client library.
-		String smfHost = null;
-		String smfTlsHost = null;
-		String smfZipHost = null;
-		String jmsJndiUri = null;
-		String jmsJndiTlsUri = null;
-				
+        if (credentials == null) {
+            throw new IllegalArgumentException("Received null credentials during object creation");
+        }
 
-		if (smfHosts != null)       smfHost =       String.join(",", smfHosts);
-		if (smfTlsHosts != null)    smfTlsHost =    String.join(",", smfTlsHosts);
-		if (smfZipHosts != null)    smfZipHost =    String.join(",", smfZipHosts);
-		if (jmsJndiUris != null)    jmsJndiUri =    String.join(",", jmsJndiUris);
-		if (jmsJndiTlsUris != null) jmsJndiTlsUri = String.join(",", jmsJndiTlsUris);
+        // Populate this the quick and dirty way for now. Can improve later as
+        // we harden. As a start, we'll be tolerant of missing attributes and
+        // just leave fields set to null.
+        for (Map.Entry<String, Object> entry : credentials.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
 
-		SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
-				smfHost, smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
-				mqttTlsUris, mqttWsUris, mqttWssUris, managementHostnames, managementPassword, managementUsername);
+            switch (key) {
+                case "clientUsername":
+                    clientUsername = (String) value;
+                    break;
+                case "clientPassword":
+                    clientPassword = (String) value;
+                    break;
+                case "msgVpnName":
+                    msgVpnName = (String) value;
+                    break;
+                case "smfHosts":
+                    smfHosts = (List<String>) value;
+                    break;
+                case "smfTlsHosts":
+                    smfTlsHosts = (List<String>) value;
+                    break;
+                case "smfZipHosts":
+                    smfZipHosts = (List<String>) value;
+                    break;
+                case "jmsJndiUris":
+                    jmsJndiUris = (List<String>) value;
+                    break;
+                case "jmsJndiTlsUris":
+                    jmsJndiTlsUris = (List<String>) value;
+                    break;
+                case "managementUsername":
+                    managementUsername = (String) value;
+                    break;
+                case "managementPassword":
+                    managementPassword = (String) value;
+                    break;
+                case "activeManagementHostname":
+                    activeManagementHostname = (String) value;
+                    break;
+                case "restUris":
+                    restUris = (List<String>) value;
+                    break;
+                case "restTlsUris":
+                    restTlsUris = (List<String>) value;
+                    break;
+                case "mqttUris":
+                    mqttUris = (List<String>) value;
+                    break;
+                case "mqttTlsUris":
+                    mqttTlsUris = (List<String>) value;
+                    break;
+                case "mqttWsUris":
+                    mqttWsUris = (List<String>) value;
+                    break;
+                case "mqttWssUris":
+                    mqttWssUris = (List<String>) value;
+                    break;
+                case "amqpUris":
+                    amqpUris = (List<String>) value;
+                    break;
+                case "amqpTlsUris":
+                    amqpTlsUris = (List<String>) value;
+                    break;
 
-		return solMessagingInfo;
-	}
+                case "managementHostnames":
+                    managementHostnames = (List<String>) value;
+                    break;
+            }
+        }
+
+
+        // Convert Lists to comma-separated strings on these properties, to be compatible with  the JCSMP Java client library.
+        String smfHost = null;
+        String smfTlsHost = null;
+        String smfZipHost = null;
+        String jmsJndiUri = null;
+        String jmsJndiTlsUri = null;
+
+
+        if (smfHosts != null) smfHost = String.join(",", smfHosts);
+        if (smfTlsHosts != null) smfTlsHost = String.join(",", smfTlsHosts);
+        if (smfZipHosts != null) smfZipHost = String.join(",", smfZipHosts);
+        if (jmsJndiUris != null) jmsJndiUri = String.join(",", jmsJndiUris);
+        if (jmsJndiTlsUris != null) jmsJndiTlsUri = String.join(",", jmsJndiTlsUris);
+
+        SolaceMessagingInfo solMessagingInfo = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName,
+                smfHost, smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris,
+                mqttTlsUris, mqttWsUris, mqttWssUris, amqpUris, amqpTlsUris, managementHostnames, managementPassword, managementUsername, activeManagementHostname);
+
+        return solMessagingInfo;
+    }
 }

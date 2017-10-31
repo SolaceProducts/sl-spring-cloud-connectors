@@ -146,6 +146,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		Map<String, Object> exVcapServices = new HashMap<String, Object>();
 
 		Map<String, Object> exCred = new HashMap<String, Object>();
+
 		exCred.put("clientUsername", "sample-client-username");
 		exCred.put("clientPassword", "sample-client-password");
 		exCred.put("msgVpnName", "sample-msg-vpn");
@@ -162,9 +163,12 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("mqttWssUris", Arrays.asList("wss://192.168.1.50:7023", "wss://192.168.1.51:7023"));
 		exCred.put("restUris", Arrays.asList("http://192.168.1.50:7018"));
 		exCred.put("restTlsUris", Arrays.asList("https://192.168.1.50:7019"));
+		exCred.put("amqpUris", Arrays.asList("amqp://192.168.1.50:7016"));
+		exCred.put("amqpTlsUris", Arrays.asList("amqps://192.168.1.50:7017"));
 		exCred.put("managementHostnames", Arrays.asList("vmr-Medium-VMR-0"));
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
+		exCred.put("activeManagementHostname", "vmr-medium-web");
 
 		exVcapServices.put("credentials", exCred);
 		exVcapServices.put("label", "solace-messaging");
@@ -172,7 +176,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exVcapServices.put("plan", "vmr-shared");
 		exVcapServices.put("provider", "Solace Systems");
 		// no need to check for tags in terms of validation. It's more for
-		exVcapServices.put("tags", Arrays.asList("solace", "rest", "mqtt", "mq", "queue", "jms", "messaging"));
+		exVcapServices.put("tags", Arrays.asList("solace", "rest", "mqtt", "mq", "queue", "jms", "messaging", "amqp"));
 		return exVcapServices;
 	}
 
@@ -204,9 +208,14 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertThat(smi.getRestUris(), is(Arrays.asList("http://192.168.1.50:7018")));
 		assertThat(smi.getRestTlsUris(), is(Arrays.asList("https://192.168.1.50:7019")));
 
+		// Check AMQP
+		assertThat(smi.getAmqpUris(), is(Arrays.asList("amqp://192.168.1.50:7016")));
+		assertThat(smi.getAmqpTlsUris(), is(Arrays.asList("amqps://192.168.1.50:7017")));
+
 		// Check Management Interfaces
 		assertThat(smi.getManagementHostnames(), is(Arrays.asList("vmr-Medium-VMR-0")));
 		assertEquals("sample-mgmt-username", smi.getManagementUsername());
 		assertEquals("sample-mgmt-password", smi.getManagementPassword());
+		assertEquals("vmr-medium-web", smi.getActiveManagementHostname());
 	}
 }
