@@ -48,7 +48,7 @@
 		<url>https://github.com/SolaceLabs/sl-spring-cloud-connectors.git</url>
 		<connection>scm:git:git://github.com/SolaceLabs/sl-spring-cloud-connectors.git</connection>
 		<developerConnection>scm:git:git@github.com:SolaceLabs/sl-spring-cloud-connectors.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.2.0</tag>
 	</scm>
 
 	<dependencies>
