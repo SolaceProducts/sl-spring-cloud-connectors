@@ -285,7 +285,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		result = prime * result + ((managementHostnames == null) ? 0 : managementHostnames.hashCode());
 		result = prime * result + ((managementPassword == null) ? 0 : managementPassword.hashCode());
 		result = prime * result + ((managementUsername == null) ? 0 : managementUsername.hashCode());
-        result = prime * result + ((activeManagementHostname == null) ? 0 : activeManagementHostname.hashCode());
+        	result = prime * result + ((activeManagementHostname == null) ? 0 : activeManagementHostname.hashCode());
 		result = prime * result + ((mqttTlsUris == null) ? 0 : mqttTlsUris.hashCode());
 		result = prime * result + ((mqttUris == null) ? 0 : mqttUris.hashCode());
 		result = prime * result + ((mqttWsUris == null) ? 0 : mqttWsUris.hashCode());
