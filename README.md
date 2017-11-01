@@ -71,7 +71,7 @@ The releases from this project are hosted in [Maven Central](http://search.maven
 
 ```
 // Solace Cloud
-compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:0.1+")
+compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:1.+")
 ```
 
 ### Using it with Maven
@@ -81,7 +81,7 @@ compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:0
 <dependency>
   <groupId>com.solace.labs.cloud.cloudfoundry</groupId>
   <artifactId>solace-labs-spring-cloud-connector</artifactId>
-  <version>0.1+</version>
+  <version>1.+</version>
 </dependency>
 ```
 
@@ -89,14 +89,14 @@ compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:0
 
 This project depends on maven for building. To build the jar locally, check out the project and build from source by doing the following:
 
-    git clone https://github.com/SolaceLabs/sl-solace-messaging-service-info.git
-    cd sl-solace-messaging-service-info
+    git clone https://github.com/SolaceLabs/sl-spring-cloud-connectors.git
+    cd sl-spring-cloud-connectors
     mvn package
 
 This will build a jar file which will be named similar to the following:
 
 ```
-target/sol-labs-spring-cloud-connector-1.0-SNAPSHOT.jar
+target/solace-labs-spring-cloud-connector-1.3.0-SNAPSHOT.jar
 ```
 
 You can install this file in your maven repository locally.
