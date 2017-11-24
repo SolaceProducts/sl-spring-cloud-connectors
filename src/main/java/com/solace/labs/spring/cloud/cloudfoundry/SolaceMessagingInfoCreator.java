@@ -139,7 +139,6 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
                 case "amqpTlsUris":
                     amqpTlsUris = (List<String>) value;
                     break;
-
                 case "managementHostnames":
                     managementHostnames = (List<String>) value;
                     break;
@@ -167,4 +166,40 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 
         return solMessagingInfo;
     }
+    
+    
+	public boolean accept(Map<String, Object> serviceData) {
+		return super.accept(serviceData) || (isUserProvided(serviceData) && isSolaceMessagingInfo(serviceData));
+	}
+	
+	public boolean isUserProvided(Map<String, Object> serviceData) {
+		if( serviceData == null )
+			return false;
+		
+		String label = (String) serviceData.get("label");
+		if( "user-provided".startsWith(label)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isSolaceMessagingInfo(Map<String, Object> serviceData) {
+		if( serviceData == null )
+			return false;
+
+		try {
+			SolaceMessagingInfo solMessagingInfo = createServiceInfo(serviceData);
+			// Good enough test
+			// Don't check for client or management username/password as they can be missing when using LDAP
+			// Not checking other Uri(s) especially that this can be a user-provided service.
+			if( solMessagingInfo != null && solMessagingInfo.getId() != null && solMessagingInfo.getMsgVpnName() != null )
+				return true;
+					
+		} catch(Throwable t) {
+			return false;
+		}
+		
+		return false;
+	}
+	
 }
