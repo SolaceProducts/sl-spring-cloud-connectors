@@ -18,8 +18,6 @@
  */
 package com.solace.labs.spring.cloud.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
