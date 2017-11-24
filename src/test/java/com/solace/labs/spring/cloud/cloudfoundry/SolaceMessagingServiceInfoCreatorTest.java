@@ -22,6 +22,7 @@ package com.solace.labs.spring.cloud.cloudfoundry;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -55,6 +56,23 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		validateExampleSmi(smi);
 
 	}
+	
+	
+	@Test
+	public void cupsSolaceMessagingServiceInfoCreationTest() {
+
+		Map<String, Object> exVcapServices = createCUPSVcapMap();
+
+		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
+
+		assertTrue(smic.accept(exVcapServices));
+
+		SolaceMessagingInfo smi = smic.createServiceInfo(exVcapServices);
+
+		validateExampleSmi(smi);
+
+	}
+	
 
 	@Test
 	public void mismatchLabelTest() {
@@ -134,17 +152,16 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		}
 		try {
 			Class<?> z = Class.forName(solaceMessagingInfoCreatorClassName);
-			assertTrue(z != null);
-			assertTrue(z.equals(SolaceMessagingInfoCreator.class));
+			assertNotNull(z);
+			assertEquals(z,SolaceMessagingInfoCreator.class);
 		} catch (ClassNotFoundException e) {
 			fail("Should not throw.");
 		}
 		
 	}
 	
-	private Map<String, Object> createVcapMap() {
-		Map<String, Object> exVcapServices = new HashMap<String, Object>();
-
+	private Map<String,Object> createCredentialsMap() {
+		
 		Map<String, Object> exCred = new HashMap<String, Object>();
 
 		exCred.put("clientUsername", "sample-client-username");
@@ -169,7 +186,15 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
 		exCred.put("activeManagementHostname", "vmr-medium-web");
+		
+		return exCred;
+	}
+	
+	private Map<String, Object> createVcapMap() {
+		Map<String, Object> exVcapServices = new HashMap<String, Object>();
 
+		Map<String, Object> exCred = createCredentialsMap();
+		
 		exVcapServices.put("credentials", exCred);
 		exVcapServices.put("label", "solace-messaging");
 		exVcapServices.put("name", "test-service-instance-name");
@@ -177,6 +202,17 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exVcapServices.put("provider", "Solace Systems");
 		// no need to check for tags in terms of validation. It's more for
 		exVcapServices.put("tags", Arrays.asList("solace", "rest", "mqtt", "mq", "queue", "jms", "messaging", "amqp"));
+		return exVcapServices;
+	}
+	
+	private Map<String, Object> createCUPSVcapMap() {
+		Map<String, Object> exVcapServices = new HashMap<String, Object>();
+		Map<String, Object> exCred = createCredentialsMap();
+		exVcapServices.put("credentials", exCred);
+		
+		exVcapServices.put("label", "user-provided");
+		exVcapServices.put("name", "test-service-instance-name");
+		exVcapServices.put("tags", Arrays.asList());
 		return exVcapServices;
 	}
 
