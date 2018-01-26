@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SolaceLabs/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceLabs/sl-spring-cloud-connectors)
+[![Build Status](https://travis-ci.org/SolaceProjects/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProjects/sl-spring-cloud-connectors)
 
 # Solace Messaging Spring Cloud Connectors
 
@@ -63,7 +63,7 @@ TODO: Add details.
 
 ## Using it in your Application
 
-The releases from this project are hosted in [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.solace.labs.cloud.cloudfoundry%22%20AND%20a%3A%22solace-labs-spring-cloud-connector%22)
+The releases from this project are hosted in [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.solace.cloud.cloudfoundry%22%20AND%20a%3A%22solace-spring-cloud-connector%22)
 
 ##Here is how to include it in your project using Gradle and Maven.
 
@@ -71,7 +71,7 @@ The releases from this project are hosted in [Maven Central](http://search.maven
 
 ```
 // Solace Cloud
-compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:1.+")
+compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:1.+")
 ```
 
 ### Using it with Maven
@@ -79,8 +79,8 @@ compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:1
 ```
 <!-- Solace Cloud -->
 <dependency>
-  <groupId>com.solace.labs.cloud.cloudfoundry</groupId>
-  <artifactId>solace-labs-spring-cloud-connector</artifactId>
+  <groupId>com.solace.cloud.cloudfoundry</groupId>
+  <artifactId>solace-spring-cloud-connector</artifactId>
   <version>1.+</version>
 </dependency>
 ```
@@ -89,14 +89,14 @@ compile("com.solace.labs.cloud.cloudfoundry:solace-labs-spring-cloud-connector:1
 
 This project depends on maven for building. To build the jar locally, check out the project and build from source by doing the following:
 
-    git clone https://github.com/SolaceLabs/sl-spring-cloud-connectors.git
+    git clone https://github.com/SolaceProjects/sl-spring-cloud-connectors.git
     cd sl-spring-cloud-connectors
     mvn package
 
 This will build a jar file which will be named similar to the following:
 
 ```
-target/solace-labs-spring-cloud-connector-1.3.0-SNAPSHOT.jar
+target/solace-spring-cloud-connector-1.3.0-SNAPSHOT.jar
 ```
 
 You can install this file in your maven repository locally.
@@ -107,11 +107,11 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Release Notes and Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceLabs/sl-solace-messaging-service-info/releases). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceProjects/sl-spring-cloud-connectors/releases). 
 
 ## Authors
 
-See the list of [contributors](https://github.com/SolaceLabs/sl-solace-messaging-service-info/contributors) who participated in this project.
+See the list of [contributors](https://github.com/SolaceProjects/sl-spring-cloud-connectors/contributors) who participated in this project.
 
 ## License
 
