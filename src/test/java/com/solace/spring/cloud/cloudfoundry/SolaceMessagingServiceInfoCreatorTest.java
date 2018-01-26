@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.solace.labs.spring.cloud.cloudfoundry;
+package com.solace.spring.cloud.cloudfoundry;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -37,7 +37,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
+import com.solace.spring.cloud.core.SolaceMessagingInfo;
 
 
 public class SolaceMessagingServiceInfoCreatorTest {

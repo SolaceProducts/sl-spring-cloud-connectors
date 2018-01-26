@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.solace.labs.spring.cloud.core;
+package com.solace.spring.cloud.core;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
