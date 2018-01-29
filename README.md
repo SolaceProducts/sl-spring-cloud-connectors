@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SolaceProjects/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProjects/sl-spring-cloud-connectors)
+[![Build Status](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors)
 
 # Solace Messaging Spring Cloud Connectors
 
@@ -89,7 +89,7 @@ compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:1.+")
 
 This project depends on maven for building. To build the jar locally, check out the project and build from source by doing the following:
 
-    git clone https://github.com/SolaceProjects/sl-spring-cloud-connectors.git
+    git clone https://github.com/SolaceProducts/sl-spring-cloud-connectors.git
     cd sl-spring-cloud-connectors
     mvn package
 
@@ -107,11 +107,11 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Release Notes and Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceProjects/sl-spring-cloud-connectors/releases). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceProducts/sl-spring-cloud-connectors/releases). 
 
 ## Authors
 
-See the list of [contributors](https://github.com/SolaceProjects/sl-spring-cloud-connectors/contributors) who participated in this project.
+See the list of [contributors](https://github.com/SolaceProducts/sl-spring-cloud-connectors/contributors) who participated in this project.
 
 ## License
 
