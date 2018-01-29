@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProjects/sl-spring-cloud-connectors)
+[![Build Status](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors)
 
 # Solace Messaging Spring Cloud Connectors
 
