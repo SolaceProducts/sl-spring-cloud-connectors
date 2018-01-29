@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.solace.labs.spring.cloud.core;
+package com.solace.spring.cloud.core;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  * extra dependencies on any Solace Enterprise APIs.
  * 
  * For more details see the GitHub project:
- *    - https://github.com/SolaceLabs/sl-solace-messaging-service-info
+ *    - https://github.com/SolaceProducts/sl-solace-messaging-service-info
  *    
  */
 @ServiceLabel("solacemessaging")

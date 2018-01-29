@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.solace.labs.spring.cloud.cloudfoundry;
+package com.solace.spring.cloud.cloudfoundry;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ import java.util.Map;
 import org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator;
 import org.springframework.cloud.cloudfoundry.Tags;
 
-import com.solace.labs.spring.cloud.core.SolaceMessagingInfo;
+import com.solace.spring.cloud.core.SolaceMessagingInfo;
 
 public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<SolaceMessagingInfo> {
 
