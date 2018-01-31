@@ -71,7 +71,7 @@ The releases from this project are hosted in [Maven Central](http://search.maven
 
 ```
 // Solace Cloud
-compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:1.+")
+compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:2.+")
 ```
 
 ### Using it with Maven
@@ -81,7 +81,7 @@ compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:1.+")
 <dependency>
   <groupId>com.solace.cloud.cloudfoundry</groupId>
   <artifactId>solace-spring-cloud-connector</artifactId>
-  <version>1.+</version>
+  <version>2.+</version>
 </dependency>
 ```
 
