@@ -69,7 +69,7 @@ Above example for the Solace Messaging API for Java (JCSMP) would be further sim
 @Autowired
 private SpringJCSMPFactory solaceFactory;
 
-JCSMPSession session = solaceFactory.createSession(props);
+JCSMPSession session = solaceFactory.createSession();
 session.connect();
 ```
 
