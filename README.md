@@ -37,9 +37,11 @@ The following is a brief introduction copied from their README:
 
 >Spring Cloud Connectors simplifies the process of connecting to services and gaining operating environment awareness in cloud platforms such as Cloud Foundry and Heroku, especially for Spring applications. It is designed for extensibility: you can use one of the provided cloud connectors or write one for your cloud platform, and you can use the built-in support for commonly-used services (relational databases, MongoDB, Redis, RabbitMQ) or extend Spring Cloud Connectors to work with your own services.
 
-## Java Applications
+## Java / JMS Applications
 
-Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance. The code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
+Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance.
+
+In the following example the code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
 
 ```java
 CloudFactory cloudFactory = new CloudFactory();
@@ -57,30 +59,18 @@ JCSMPSession session = JCSMPFactory.onlyInstance().createSession(props);
 session.connect();
 ```
 
-## JMS / Spring JMS Applications
+## Spring Applications
 
-The same pattern can be applied to JMS and Spring JMS applications to make use of Spring Cloud to access the information in the VCAP_SERVICES environment variable:
+The Spring Cloud Auto-Configure Java, JMS and JNDI tutorials in the [Solace Messaging with Pivotal Cloud Foundry Getting Started Samples](https://solacesamples.github.io/solace-samples-cloudfoundry-java/) provide easy integration into Spring applications.
+
+Above example for the Solace Messaging API for Java (JCSMP) would be further simplified as follows: here Spring creates a SpringJCSMPFactory with all the properties set and all that is required is to autowire this into your application. Check out the [tutorial](https://solacesamples.github.io/solace-samples-cloudfoundry-java/spring-cloud-autoconf-java/) for further details.
 
 ```java
-CloudFactory cloudFactory = new CloudFactory();
-Cloud cloud = cloudFactory.getCloud();
-SolaceMessagingInfo solacemessaging = (SolaceMessagingInfo) cloud.getServiceInfo("MyService");
+@Autowired
+private SpringJCSMPFactory solaceFactory;
 
-// Creating a JMS connection factory
-SolConnectionFactory connectionFactory = SolJmsUtility.createConnectionFactory();
-connectionFactory.setHost(solacemessaging.getSmfHost());
-connectionFactory.setVPN(solacemessaging.getMsgVpnName());
-connectionFactory.setUsername(solacemessaging.getClientUsername());
-connectionFactory.setPassword(solacemessaging.getClientPassword());
-
-// Use connectionFactory in your JMS or Spring JMS application
-// example:
-
-// Create connection to Solace messaging
-Connection connection = connectionFactory.createConnection();
-
-// Create a non-transacted, auto ACK session.
-final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+JCSMPSession session = solaceFactory.createSession(props);
+session.connect();
 ```
 
 ## Using it in your Application
