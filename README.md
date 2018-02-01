@@ -57,9 +57,31 @@ JCSMPSession session = JCSMPFactory.onlyInstance().createSession(props);
 session.connect();
 ```
 
-## Spring Applications
+## JMS / Spring JMS Applications
 
-TODO: Add details.
+The same pattern can be applied to JMS and Spring JMS applications to make use of Spring Cloud to access the information in the VCAP_SERVICES environment variable:
+
+```java
+CloudFactory cloudFactory = new CloudFactory();
+Cloud cloud = cloudFactory.getCloud();
+SolaceMessagingInfo solacemessaging = (SolaceMessagingInfo) cloud.getServiceInfo("MyService");
+
+// Creating a JMS connection factory
+SolConnectionFactory connectionFactory = SolJmsUtility.createConnectionFactory();
+connectionFactory.setHost(solacemessaging.getSmfHost());
+connectionFactory.setVPN(solacemessaging.getMsgVpnName());
+connectionFactory.setUsername(solacemessaging.getClientUsername());
+connectionFactory.setPassword(solacemessaging.getClientPassword());
+
+// Use connectionFactory in your JMS or Spring JMS application
+// example:
+
+// Create connection to Solace messaging
+Connection connection = connectionFactory.createConnection();
+
+// Create a non-transacted, auto ACK session.
+final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+```
 
 ## Using it in your Application
 
