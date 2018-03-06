@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -20,6 +20,7 @@ package com.solace.spring.cloud.core;
 
 import java.util.List;
 
+import com.solace.services.loader.model.SolaceServiceCredentials;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.cloud.service.BaseServiceInfo;
 import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
@@ -28,13 +29,13 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  * A implementation of Spring Cloud Connector ServiceInfo to wrap the SolaceMessaging Cloud Foundry
  * Service. This class provides easy access to all of the information in the VCAP_SERVICES without
  * extra dependencies on any Solace Enterprise APIs.
- * 
+ *
  * For more details see the GitHub project:
  *    - https://github.com/SolaceProducts/sl-solace-messaging-service-info
- *    
+ *
  */
 @ServiceLabel("solacemessaging")
-public class SolaceMessagingInfo extends BaseServiceInfo {
+public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServiceCredentials {
 
 	private String clientUsername;
 	private String clientPassword;
@@ -56,13 +57,13 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	private String managementPassword;
 	private String managementUsername;
 	private String activeManagementHostname;
-	
+
 
 	// Default constructor to enable bean unit testing.
 	public SolaceMessagingInfo() {
 		super(null);
 	}
-	
+
 	public SolaceMessagingInfo(String id, String clientUsername, String clientPassword, String msgVpnName,
 			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
@@ -91,11 +92,12 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 		this.activeManagementHostname = activeManagementHostname;
 	}
 
-	
+
 
 	/**
 	 * @return the clientUsername
 	 */
+	@Override
 	@ServiceProperty
 	public String getClientUsername() {
 		return clientUsername;
@@ -104,6 +106,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the clientPassword
 	 */
+	@Override
 	@ServiceProperty
 	public String getClientPassword() {
 		return clientPassword;
@@ -112,6 +115,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the msgVpnName
 	 */
+	@Override
 	@ServiceProperty
 	public String getMsgVpnName() {
 		return msgVpnName;
@@ -120,6 +124,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the smfHost
 	 */
+	@Override
 	@ServiceProperty
 	public String getSmfHost() {
 		return smfHost;
@@ -128,6 +133,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the smfTlsHost
 	 */
+	@Override
 	@ServiceProperty
 	public String getSmfTlsHost() {
 		return smfTlsHost;
@@ -136,6 +142,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the smfZipHost
 	 */
+	@Override
 	@ServiceProperty
 	public String getSmfZipHost() {
 		return smfZipHost;
@@ -144,6 +151,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the jmsJndiUri
 	 */
+	@Override
 	@ServiceProperty
 	public String getJmsJndiUri() {
 		return jmsJndiUri;
@@ -152,6 +160,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the jmsJndiTlsUri
 	 */
+	@Override
 	@ServiceProperty
 	public String getJmsJndiTlsUri() {
 		return jmsJndiTlsUri;
@@ -160,6 +169,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the restUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getRestUris() {
 		return restUris;
@@ -168,6 +178,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the restTlsUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getRestTlsUris() {
 		return restTlsUris;
@@ -176,6 +187,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the amqpUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getAmqpUris() {
 		return amqpUris;
@@ -184,6 +196,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the amqpTlsUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getAmqpTlsUris() {
 		return amqpTlsUris;
@@ -192,6 +205,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the mqttUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getMqttUris() {
 		return mqttUris;
@@ -200,6 +214,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the mqttTlsUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getMqttTlsUris() {
 		return mqttTlsUris;
@@ -208,6 +223,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the mqttWsUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getMqttWsUris() {
 		return mqttWsUris;
@@ -216,6 +232,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the mqttWssUris
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getMqttWssUris() {
 		return mqttWssUris;
@@ -225,6 +242,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the managementHostnames
 	 */
+	@Override
 	@ServiceProperty
 	public List<String> getManagementHostnames() {
 		return managementHostnames;
@@ -233,6 +251,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the managementPassword
 	 */
+	@Override
 	@ServiceProperty
 	public String getManagementPassword() {
 		return managementPassword;
@@ -241,6 +260,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 	/**
 	 * @return the managementUsername
 	 */
+	@Override
 	@ServiceProperty
 	public String getManagementUsername() {
 		return managementUsername;
@@ -249,14 +269,15 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
     /**
      * @return the activeManagementHostname
      */
+	@Override
     @ServiceProperty
     public String getActiveManagementHostname() {
         return activeManagementHostname;
     }
-	
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -266,7 +287,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -299,7 +320,7 @@ public class SolaceMessagingInfo extends BaseServiceInfo {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
