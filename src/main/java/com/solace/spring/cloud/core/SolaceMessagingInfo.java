@@ -20,7 +20,7 @@ package com.solace.spring.cloud.core;
 
 import java.util.List;
 
-import com.solace.services.loader.model.SolaceServiceCredentials;
+import com.solace.services.core.model.SolaceServiceCredentials;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.cloud.service.BaseServiceInfo;
 import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
