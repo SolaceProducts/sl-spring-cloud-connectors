@@ -41,12 +41,12 @@ The following is a brief introduction copied from their README:
 
 Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance.
 
-In the following example the code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceMessagingInfo` object to connect a Solace Messaging API for Java (JCSMP) session.
+In the following example the code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceServiceCredentials` object to connect a Solace Messaging API for Java (JCSMP) session.
 
 ```java
 CloudFactory cloudFactory = new CloudFactory();
 Cloud cloud = cloudFactory.getCloud();
-SolaceMessagingInfo solacemessaging = (SolaceMessagingInfo) cloud.getServiceInfo("MyService");
+SolaceServiceCredentials solacemessaging = (SolaceServiceCredentials) cloud.getServiceInfo("MyService");
 
 // Setting up the JCSMP Connection
 final JCSMPProperties props = new JCSMPProperties();

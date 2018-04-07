@@ -17,6 +17,8 @@ hs_err_pid*
 .project
 .settings/
 .springBeans
+.idea/
+*.iml
 
 # Apple 
 .DS_Store
