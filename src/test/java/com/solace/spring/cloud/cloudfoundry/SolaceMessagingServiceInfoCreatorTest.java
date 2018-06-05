@@ -42,10 +42,28 @@ import com.solace.spring.cloud.core.SolaceMessagingInfo;
 
 public class SolaceMessagingServiceInfoCreatorTest {
 
-	@Test
-	public void basicSolaceMessagingServiceInfoCreationTest() {
+	private String solacePubSubLabel = "solace-pubsub";
+	private String solaceMessagingLabel = "solace-messaging";
 
-		Map<String, Object> exVcapServices = createVcapMap();
+	@Test
+	public void basicSolaceMessagingServiceInfoCreationTestWithSolaceMessagingLabel() {
+
+		Map<String, Object> exVcapServices = createVcapMap(solaceMessagingLabel);
+
+		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
+
+		assertTrue(smic.accept(exVcapServices));
+
+		SolaceMessagingInfo smi = smic.createServiceInfo(exVcapServices);
+
+		validateExampleSmi(smi);
+
+	}
+
+	@Test
+	public void basicSolaceMessagingServiceInfoCreationTestWithSolacePubSubLabel() {
+
+		Map<String, Object> exVcapServices = createVcapMap(solacePubSubLabel);
 
 		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
 
@@ -189,14 +207,18 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		
 		return exCred;
 	}
-	
+
 	private Map<String, Object> createVcapMap() {
+		return createVcapMap(solacePubSubLabel);
+	}
+
+	private Map<String, Object> createVcapMap(String label) {
 		Map<String, Object> exVcapServices = new HashMap<String, Object>();
 
 		Map<String, Object> exCred = createCredentialsMap();
 		
 		exVcapServices.put("credentials", exCred);
-		exVcapServices.put("label", "solace-messaging");
+		exVcapServices.put("label", label);
 		exVcapServices.put("name", "test-service-instance-name");
 		exVcapServices.put("plan", "vmr-shared");
 		exVcapServices.put("provider", "Solace Systems");

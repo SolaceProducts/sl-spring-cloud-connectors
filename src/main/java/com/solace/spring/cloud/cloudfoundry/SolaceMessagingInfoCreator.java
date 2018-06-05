@@ -37,9 +37,10 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
     // Therefore we do that transformation.
 
     static private String solaceMessagingTag = "solace-messaging";
+    static private String solacePubSubTag = "solace-pubsub";
 
     public SolaceMessagingInfoCreator() {
-        super(new Tags(solaceMessagingTag));
+        super(new Tags(solaceMessagingTag, solacePubSubTag));
     }
 
     @SuppressWarnings("unchecked")
