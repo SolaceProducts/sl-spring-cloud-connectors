@@ -34,7 +34,7 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  *    - https://github.com/SolaceProducts/sl-solace-messaging-service-info
  *
  */
-@ServiceLabel("solacemessaging")
+@ServiceLabel("solace-pubsub")
 public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServiceCredentials {
 
 	private String clientUsername;
