@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,11 +36,10 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
     // the JCSMP Java client library expects them as comma-separated strings.
     // Therefore we do that transformation.
 
-    static private String solaceMessagingTag = "solace-messaging";
     static private String solacePubSubTag = "solace-pubsub";
 
     public SolaceMessagingInfoCreator() {
-        super(new Tags(solaceMessagingTag, solacePubSubTag));
+        super(new Tags(solacePubSubTag));
     }
 
     @SuppressWarnings("unchecked")
@@ -167,23 +166,23 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 
         return solMessagingInfo;
     }
-    
-    
+
+
 	public boolean accept(Map<String, Object> serviceData) {
 		return super.accept(serviceData) || (isUserProvided(serviceData) && isSolaceMessagingInfo(serviceData));
 	}
-	
+
 	public boolean isUserProvided(Map<String, Object> serviceData) {
 		if( serviceData == null )
 			return false;
-		
+
 		String label = (String) serviceData.get("label");
 		if( "user-provided".startsWith(label)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isSolaceMessagingInfo(Map<String, Object> serviceData) {
 		if( serviceData == null )
 			return false;
@@ -195,12 +194,12 @@ public class SolaceMessagingInfoCreator extends CloudFoundryServiceInfoCreator<S
 			// Not checking other Uri(s) especially that this can be a user-provided service.
 			if( solMessagingInfo != null && solMessagingInfo.getId() != null && solMessagingInfo.getMsgVpnName() != null )
 				return true;
-					
+
 		} catch(Throwable t) {
 			return false;
 		}
-		
+
 		return false;
 	}
-	
+
 }
