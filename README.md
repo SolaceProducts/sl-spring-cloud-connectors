@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors)
 
-# Solace Messaging Spring Cloud Connectors
+# Solace PubSub+ Spring Cloud Connectors
 
-A Spring Cloud Connector for an instance of Solace Messaging in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for Solace Messaging in Cloud Foundry.
+A Spring Cloud Connector for an instance of Solace PubSub+ in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for Solace PubSub+ in Cloud Foundry.
 
 ## Contents
 
@@ -23,9 +23,9 @@ A Spring Cloud Connector for an instance of Solace Messaging in Cloud Foundry. S
 
 ## Overview
 
-This project provides an implementation of the ServiceInfo and ServiceInfoCreator interfaces to extend the Spring Cloud Connectors project to the Solace Messaging Cloud Foundry service. Using this in your Spring application can make consuming the Solace messaging service simpler than straight parsing of the `VCAP_SERVICES` environment variable.
+This project provides an implementation of the ServiceInfo and ServiceInfoCreator interfaces to extend the Spring Cloud Connectors project to the Solace PubSub+ Cloud Foundry service. Using this in your Spring application can make consuming the Solace PubSub+ service simpler than straight parsing of the `VCAP_SERVICES` environment variable.
 
-The Spring cloud documentation provides both a nice introduction to Cloud Connectors and a nice overview of the options for [extending Spring Cloud](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html#_extending_spring_cloud_connectors). This project provides a Cloud Service Support extension to make it easy to consume the Solace Messaging Cloud Foundry Service in your Cloud Foundry application. The following diagram attempts to provide an architectural overview of what is implemented in this project.
+The Spring cloud documentation provides both a nice introduction to Cloud Connectors and a nice overview of the options for [extending Spring Cloud](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html#_extending_spring_cloud_connectors). This project provides a Cloud Service Support extension to make it easy to consume the Solace PubSub+ Cloud Foundry Service in your Cloud Foundry application. The following diagram attempts to provide an architectural overview of what is implemented in this project.
 
 ![Architecture](resources/Architecture.png)
 
@@ -39,9 +39,9 @@ The following is a brief introduction copied from their README:
 
 ## Java Applications
 
-Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace Messaging Service Instance.
+Applications can use this connector with Spring Cloud to access the information in the VCAP_SERVICES environment variable, necessary for connection to a Solace PubSub+ Service Instance.
 
-In the following example the code finds the Solace Messaging Cloud Foundry service instance name `MyService` and uses the `SolaceServiceCredentials` object to connect a Solace Messaging API for Java (JCSMP) session.
+In the following example the code finds the Solace PubSub+ Cloud Foundry service instance name `MyService` and uses the `SolaceServiceCredentials` object to connect a Solace PubSub+ API for Java (JCSMP) session.
 
 ```java
 CloudFactory cloudFactory = new CloudFactory();
@@ -61,9 +61,9 @@ session.connect();
 
 ## Spring Applications
 
-The Spring Cloud Auto-Configure Java, JMS and JNDI tutorials in the [Solace Messaging with Pivotal Cloud Foundry Getting Started Samples](https://solacesamples.github.io/solace-samples-cloudfoundry-java/) provide easy integration into Spring applications.
+The Spring Cloud Auto-Configure Java, JMS and JNDI tutorials in the [Solace PubSub+ with Pivotal Cloud Foundry Getting Started Samples](https://solacesamples.github.io/solace-samples-cloudfoundry-java/) provide easy integration into Spring applications.
 
-Above example for the Solace Messaging API for Java (JCSMP) would be further simplified as follows: here Spring creates a SpringJCSMPFactory with all the properties set and all that is required is to autowire this into your application. Check out the [tutorial](https://solacesamples.github.io/solace-samples-cloudfoundry-java/spring-cloud-autoconf-java/) for further details.
+Above example for the Solace PubSub+ API for Java (JCSMP) would be further simplified as follows: here Spring creates a SpringJCSMPFactory with all the properties set and all that is required is to autowire this into your application. Check out the [tutorial](https://solacesamples.github.io/solace-samples-cloudfoundry-java/spring-cloud-autoconf-java/) for further details.
 
 ```java
 @Autowired
@@ -119,7 +119,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Release Notes and Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceProducts/sl-spring-cloud-connectors/releases). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available and corresponding release notes, see the [Releases in this repository](https://github.com/SolaceProducts/sl-spring-cloud-connectors/releases).
 
 ## Authors
 
@@ -131,8 +131,8 @@ This project is licensed under the Apache License, Version 2.0. - See the [LICEN
 
 ## Resources
 
-For more information about Cloud Foundry and the Solace Messaging service these resources:
-- [Solace Messaging for Pivotal Cloud Foundry](http://docs.pivotal.io/solace-messaging/)
+For more information about Cloud Foundry and the Solace PubSub+ service these resources:
+- [Solace PubSub+ for Pivotal Cloud Foundry](http://docs.pivotal.io/solace-messaging/)
 - [Cloud Foundry Documentation](http://docs.cloudfoundry.org/)
 - For an introduction to Cloud Foundry: https://www.cloudfoundry.org/
 
