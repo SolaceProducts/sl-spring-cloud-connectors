@@ -31,10 +31,10 @@ import org.springframework.cloud.service.ServiceInfo.ServiceLabel;
  * extra dependencies on any Solace Enterprise APIs.
  *
  * For more details see the GitHub project:
- *    - https://github.com/SolaceProducts/sl-solace-messaging-service-info
+ *    - https://github.com/SolaceProducts/sl-spring-cloud-connectors
  *
  */
-@ServiceLabel("solacemessaging")
+@ServiceLabel("solacepubsub")
 public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServiceCredentials {
 
 	private String clientUsername;

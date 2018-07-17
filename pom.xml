@@ -22,9 +22,10 @@
 	<groupId>com.solace.cloud.cloudfoundry</groupId>
 	<artifactId>solace-spring-cloud-connector</artifactId>
 	<packaging>jar</packaging>
-	<version>2.4.0-SNAPSHOT</version>
-	<name>Spring Cloud Connectors for Solace Messaging on Cloud Foundry</name>
-	<description>Spring Cloud Connectors for Solace Messaging on Cloud Foundry.</description>
+	<version>3.0.0-SNAPSHOT</version>
+	<name>Spring Cloud Connectors for Solace PubSub+ on Cloud Foundry</name>
+	<description>Spring Cloud Connectors for Solace PubSub+ on Cloud Foundry.</description>
+
 
 	<url>http://dev.solacesystems.com</url>
 
@@ -55,7 +56,7 @@
 		<dependency>
 			<groupId>com.solace.cloud.core</groupId>
 			<artifactId>solace-services-info</artifactId>
-			<version>0.1.0</version>
+			<version>0.2.0</version>
 		</dependency>
 
 		<dependency>
@@ -90,13 +91,6 @@
 			<artifactId>meanbean</artifactId>
 			<version>2.0.3</version>
 			<scope>test</scope>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-cypher-compiler-2.2</artifactId>
-			<version>2.2.5</version>
 		</dependency>
 	</dependencies>
 

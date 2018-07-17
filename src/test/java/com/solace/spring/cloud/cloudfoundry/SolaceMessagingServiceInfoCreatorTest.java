@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -43,22 +43,6 @@ import com.solace.spring.cloud.core.SolaceMessagingInfo;
 public class SolaceMessagingServiceInfoCreatorTest {
 
 	private String solacePubSubLabel = "solace-pubsub";
-	private String solaceMessagingLabel = "solace-messaging";
-
-	@Test
-	public void basicSolaceMessagingServiceInfoCreationTestWithSolaceMessagingLabel() {
-
-		Map<String, Object> exVcapServices = createVcapMap(solaceMessagingLabel);
-
-		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
-
-		assertTrue(smic.accept(exVcapServices));
-
-		SolaceMessagingInfo smi = smic.createServiceInfo(exVcapServices);
-
-		validateExampleSmi(smi);
-
-	}
 
 	@Test
 	public void basicSolaceMessagingServiceInfoCreationTestWithSolacePubSubLabel() {
@@ -74,8 +58,8 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		validateExampleSmi(smi);
 
 	}
-	
-	
+
+
 	@Test
 	public void cupsSolaceMessagingServiceInfoCreationTest() {
 
@@ -90,7 +74,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		validateExampleSmi(smi);
 
 	}
-	
+
 
 	@Test
 	public void mismatchLabelTest() {
@@ -116,7 +100,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 
 		// Should still accept it.
 		assertTrue(smic.accept(exVcapServices));
-		
+
 		// Should be throw exception for null credentials.
 		smic.createServiceInfo(exVcapServices);
 	}
@@ -129,22 +113,22 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> exCred = (Map<String, Object>) exVcapServices.get("credentials");
 		exCred.remove("smfHosts");
-		
+
 		SolaceMessagingInfoCreator smic = new SolaceMessagingInfoCreator();
 
 		// Should still accept it.
 		assertTrue(smic.accept(exVcapServices));
-		
+
 		SolaceMessagingInfo smi = smic.createServiceInfo(exVcapServices);
-		
+
 		// Validate smf is null. Others are not
 		assertNull(smi.getSmfHost());
 		assertEquals("tcps://192.168.1.50:7003,tcps://192.168.1.51:7003", smi.getSmfTlsHost());
 	}
-	
-	@Test 
+
+	@Test
 	public void loadCreatorFromMeta() {
-		
+
 		String metaFileName = "src/main/resources/META-INF/services/org.springframework.cloud.cloudfoundry.CloudFoundryServiceInfoCreator";
 		String solaceMessagingInfoCreatorClassName = null;
 		BufferedReader br = null;
@@ -175,11 +159,11 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		} catch (ClassNotFoundException e) {
 			fail("Should not throw.");
 		}
-		
+
 	}
-	
+
 	private Map<String,Object> createCredentialsMap() {
-		
+
 		Map<String, Object> exCred = new HashMap<String, Object>();
 
 		exCred.put("clientUsername", "sample-client-username");
@@ -204,7 +188,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
 		exCred.put("activeManagementHostname", "vmr-medium-web");
-		
+
 		return exCred;
 	}
 
@@ -216,7 +200,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		Map<String, Object> exVcapServices = new HashMap<String, Object>();
 
 		Map<String, Object> exCred = createCredentialsMap();
-		
+
 		exVcapServices.put("credentials", exCred);
 		exVcapServices.put("label", label);
 		exVcapServices.put("name", "test-service-instance-name");
@@ -226,12 +210,12 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exVcapServices.put("tags", Arrays.asList("solace", "rest", "mqtt", "mq", "queue", "jms", "messaging", "amqp"));
 		return exVcapServices;
 	}
-	
+
 	private Map<String, Object> createCUPSVcapMap() {
 		Map<String, Object> exVcapServices = new HashMap<String, Object>();
 		Map<String, Object> exCred = createCredentialsMap();
 		exVcapServices.put("credentials", exCred);
-		
+
 		exVcapServices.put("label", "user-provided");
 		exVcapServices.put("name", "test-service-instance-name");
 		exVcapServices.put("tags", Arrays.asList());
@@ -240,7 +224,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 
 	private void validateExampleSmi(SolaceMessagingInfo smi) {
 		// Validate it all got set correctly.
-		
+
 		// Check Top Level stuff
 		assertEquals("test-service-instance-name", smi.getId());
 		assertEquals("sample-client-username", smi.getClientUsername());
