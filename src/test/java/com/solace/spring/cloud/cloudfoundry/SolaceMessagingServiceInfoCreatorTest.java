@@ -45,7 +45,7 @@ public class SolaceMessagingServiceInfoCreatorTest {
 	private String solacePubSubLabel = "solace-pubsub";
 
 	@Test
-	public void basicSolaceMessagingServiceInfoCreationTest() {
+	public void basicSolaceMessagingServiceInfoCreationTestWithSolacePubSubLabel() {
 
 		Map<String, Object> exVcapServices = createVcapMap(solacePubSubLabel);
 

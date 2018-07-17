@@ -26,6 +26,7 @@
 	<name>Spring Cloud Connectors for Solace PubSub+ on Cloud Foundry</name>
 	<description>Spring Cloud Connectors for Solace PubSub+ on Cloud Foundry.</description>
 
+
 	<url>http://dev.solacesystems.com</url>
 
 	<licenses>
