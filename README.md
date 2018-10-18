@@ -61,9 +61,9 @@ session.connect();
 
 ## Spring Applications
 
-The Spring Cloud Auto-Configure Java, JMS and JNDI tutorials in the [Solace PubSub+ with Pivotal Cloud Foundry Getting Started Samples](https://solacesamples.github.io/solace-samples-cloudfoundry-java/) provide easy integration into Spring applications.
+The Spring Cloud Auto-Configure Java, JMS and JNDI tutorials in the [Solace PubSub+ with Pivotal Cloud Foundry Getting Started Samples](https://dev.solace.com/samples/solace-samples-cloudfoundry-java/) provide easy integration into Spring applications.
 
-Above example for the Solace PubSub+ API for Java (JCSMP) would be further simplified as follows: here Spring creates a SpringJCSMPFactory with all the properties set and all that is required is to autowire this into your application. Check out the [tutorial](https://solacesamples.github.io/solace-samples-cloudfoundry-java/spring-cloud-autoconf-java/) for further details.
+Above example for the Solace PubSub+ API for Java (JCSMP) would be further simplified as follows: here Spring creates a SpringJCSMPFactory with all the properties set and all that is required is to autowire this into your application. Check out the [tutorial](https://dev.solace.com/samples/solace-samples-cloudfoundry-java/spring-cloud-autoconf-java/) for further details.
 
 ```java
 @Autowired
