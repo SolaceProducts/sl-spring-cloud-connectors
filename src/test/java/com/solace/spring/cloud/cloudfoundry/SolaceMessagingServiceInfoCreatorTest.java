@@ -188,6 +188,8 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		exCred.put("managementUsername", "sample-mgmt-username");
 		exCred.put("managementPassword", "sample-mgmt-password");
 		exCred.put("activeManagementHostname", "vmr-medium-web");
+		exCred.put("dmrClusterName", "dmr-cluster-name");
+		exCred.put("dmrClusterPassword", "dmr-cluster-password");
 
 		return exCred;
 	}
@@ -259,5 +261,9 @@ public class SolaceMessagingServiceInfoCreatorTest {
 		assertEquals("sample-mgmt-username", smi.getManagementUsername());
 		assertEquals("sample-mgmt-password", smi.getManagementPassword());
 		assertEquals("vmr-medium-web", smi.getActiveManagementHostname());
+
+		// Check DMR Clusters
+		assertEquals("dmr-cluster-name", smi.getDmrClusterName());
+		assertEquals("dmr-cluster-password", smi.getDmrClusterPassword());
 	}
 }

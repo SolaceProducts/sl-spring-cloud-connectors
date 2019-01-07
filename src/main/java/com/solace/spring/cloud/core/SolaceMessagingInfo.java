@@ -57,6 +57,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
 	private String managementPassword;
 	private String managementUsername;
 	private String activeManagementHostname;
+	private String dmrClusterName;
+	private String dmrClusterPassword;
 
 
 	// Default constructor to enable bean unit testing.
@@ -68,7 +70,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
 			String smfHost, String smfTlsHost, String smfZipHost, String jmsJndiUri, String jmsJndiTlsUri,
 			List<String> restUris, List<String> restTlsUris, List<String> mqttUris, List<String> mqttTlsUris,
 			List<String> mqttWsUris, List<String> mqttWssUris, List<String> amqpUris, List<String> amqpTlsUris, List<String> managementHostnames,
-			String managementPassword, String managementUsername, String activeManagementHostname) {
+			String managementPassword, String managementUsername, String activeManagementHostname,
+							   String dmrClusterName, String dmrClusterPassword) {
 		super(id);
 		this.clientUsername = clientUsername;
 		this.clientPassword = clientPassword;
@@ -90,6 +93,8 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
 		this.managementPassword = managementPassword;
 		this.managementUsername = managementUsername;
 		this.activeManagementHostname = activeManagementHostname;
+		this.dmrClusterName = dmrClusterName;
+		this.dmrClusterPassword = dmrClusterPassword;
 	}
 
 
@@ -275,6 +280,24 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
         return activeManagementHostname;
     }
 
+	/**
+	 * @return the dmrClusterName
+	 */
+	@Override
+	@ServiceProperty
+	public String getDmrClusterName() {
+		return dmrClusterName;
+	}
+
+	/**
+	 * @return the dmrClusterPassword
+	 */
+	@Override
+	@ServiceProperty
+	public String getDmrClusterPassword() {
+		return dmrClusterPassword;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -304,7 +327,9 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
 		result = prime * result + ((managementHostnames == null) ? 0 : managementHostnames.hashCode());
 		result = prime * result + ((managementPassword == null) ? 0 : managementPassword.hashCode());
 		result = prime * result + ((managementUsername == null) ? 0 : managementUsername.hashCode());
-        	result = prime * result + ((activeManagementHostname == null) ? 0 : activeManagementHostname.hashCode());
+		result = prime * result + ((activeManagementHostname == null) ? 0 : activeManagementHostname.hashCode());
+		result = prime * result + ((dmrClusterName == null) ? 0 : dmrClusterName.hashCode());
+		result = prime * result + ((dmrClusterPassword == null) ? 0 : dmrClusterPassword.hashCode());
 		result = prime * result + ((mqttTlsUris == null) ? 0 : mqttTlsUris.hashCode());
 		result = prime * result + ((mqttUris == null) ? 0 : mqttUris.hashCode());
 		result = prime * result + ((mqttWsUris == null) ? 0 : mqttWsUris.hashCode());
@@ -387,6 +412,16 @@ public class SolaceMessagingInfo extends BaseServiceInfo implements SolaceServic
                 return false;
         } else if (!activeManagementHostname.equals(other.activeManagementHostname))
             return false;
+		if (dmrClusterName == null) {
+			if (other.dmrClusterName != null)
+				return false;
+		} else if (!dmrClusterName.equals(other.dmrClusterName))
+			return false;
+		if (dmrClusterPassword == null) {
+			if (other.dmrClusterPassword != null)
+				return false;
+		} else if (!dmrClusterPassword.equals(other.dmrClusterPassword))
+			return false;
 		if (mqttTlsUris == null) {
 			if (other.mqttTlsUris != null)
 				return false;

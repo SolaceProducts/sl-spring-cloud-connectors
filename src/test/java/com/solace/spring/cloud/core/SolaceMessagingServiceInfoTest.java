@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -57,11 +57,13 @@ public class SolaceMessagingServiceInfoTest {
 		String managementUsername = "sample-mgmt-username";
 		String managementPassword = "sample-mgmt-password";
 		String activeManagementHostname = "vmr-medium-web";
+		String dmrClusterName = "dmr-cluster-name";
+		String dmrClusterPassword = "dmr-cluster-password";
 
 		SolaceMessagingInfo smi = new SolaceMessagingInfo(id, clientUsername, clientPassword, msgVpnName, smfHost,
 				smfTlsHost, smfZipHost, jmsJndiUri, jmsJndiTlsUri, restUris, restTlsUris, mqttUris, mqttTlsUris,
 				mqttWsUris, mqttWssUris, amqpUris, amqpTlsUris, managementHostnames, managementPassword,
-				managementUsername, activeManagementHostname);
+				managementUsername, activeManagementHostname, dmrClusterName, dmrClusterPassword);
 
 		// Check Top Level stuff
 		assertEquals(id, smi.getId());
@@ -97,6 +99,9 @@ public class SolaceMessagingServiceInfoTest {
 		assertEquals(managementUsername, smi.getManagementUsername());
 		assertEquals(managementPassword, smi.getManagementPassword());
 
+		// Check DMR Cluster Credentials
+		assertEquals(dmrClusterName, smi.getDmrClusterName());
+		assertEquals(dmrClusterPassword, smi.getDmrClusterPassword());
 	}
 
 	@Test
