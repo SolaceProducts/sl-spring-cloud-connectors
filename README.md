@@ -79,13 +79,13 @@ The releases from this project are hosted in [Maven Central](http://search.maven
 
 ##Here is how to include it in your project using Gradle and Maven.
 
-Include version 3 or later to use Spring Boot release 2.x
+Include version 4 or later to use Spring Boot release 2.x
 
 ### Using it with Gradle
 
 ```
 // Solace Cloud
-compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:3.+")
+compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:4.+")
 ```
 
 ### Using it with Maven
@@ -95,7 +95,7 @@ compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:3.+")
 <dependency>
   <groupId>com.solace.cloud.cloudfoundry</groupId>
   <artifactId>solace-spring-cloud-connector</artifactId>
-  <version>[3,)</version>
+  <version>[4,)</version>
 </dependency>
 ```
 
