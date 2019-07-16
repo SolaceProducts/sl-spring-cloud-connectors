@@ -38,10 +38,10 @@
 
 	<developers>
 		<developer>
-			<name>Mark Spielman</name>
-			<email>info@solacesystems.com</email>
-			<organization>Solace Systems</organization>
-			<organizationUrl>http://dev.solacesystems.com</organizationUrl>
+			<name>support</name>
+			<email>support@solace.com</email>
+			<organization>Solace</organization>
+			<organizationUrl>http://dev.solace.com</organizationUrl>
 		</developer>
 	</developers>
 
@@ -101,7 +101,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<!-- or whatever version you use -->
+					<!-- or whatever Java version you use -->
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
@@ -131,7 +131,6 @@
 						</goals>
 					</execution>
 				</executions>
-
 			</plugin>
 		</plugins>
 	</build>
