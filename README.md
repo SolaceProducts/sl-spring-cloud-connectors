@@ -79,11 +79,13 @@ The releases from this project are hosted in [Maven Central](http://search.maven
 
 ##Here is how to include it in your project using Gradle and Maven.
 
+Include version 4.0.0 or later to use Spring Boot release 2.x
+
 ### Using it with Gradle
 
 ```
 // Solace Cloud
-compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:2.+")
+compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:4.0.0")
 ```
 
 ### Using it with Maven
@@ -93,7 +95,7 @@ compile("com.solace.cloud.cloudfoundry:solace-spring-cloud-connector:2.+")
 <dependency>
   <groupId>com.solace.cloud.cloudfoundry</groupId>
   <artifactId>solace-spring-cloud-connector</artifactId>
-  <version>2.+</version>
+  <version>4.0.0.</version>
 </dependency>
 ```
 
@@ -108,7 +110,7 @@ This project depends on maven for building. To build the jar locally, check out 
 This will build a jar file which will be named similar to the following:
 
 ```
-target/solace-spring-cloud-connector-1.3.0-SNAPSHOT.jar
+target/solace-spring-cloud-connector-3.3.0-SNAPSHOT.jar
 ```
 
 You can install this file in your maven repository locally.
