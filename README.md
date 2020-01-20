@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors.svg?branch=master)](https://travis-ci.org/SolaceProducts/sl-spring-cloud-connectors)
 
+| NOTICE | This repository is no longer maintained. The project had been moved into [solace-spring-cloud](https://github.com/SolaceProducts/solace-spring-cloud). Please go there for the latest updates on this project. |
+| --- | --- |
+
 # Solace PubSub+ Spring Cloud Connectors
 
 A Spring Cloud Connector for an instance of Solace PubSub+ in Cloud Foundry. Specifically a ServiceInfo and ServiceInfoCreator implementation for Solace PubSub+ in Cloud Foundry.
